@@ -6,7 +6,7 @@ COPY pom.xml mvnw ./
 COPY .mvn .mvn
 RUN mvn -v
 COPY src ./src
-RUN mvn -DskipTests package -P !native -Dskip.native -DskipITs=true -e -B package
+RUN mvn -DskipTests -B clean package -P !native -Dskip.native -DskipITs=true -e
 
 ## Run stage: lightweight JRE
 FROM eclipse-temurin:17-jre-jammy
