@@ -1,8 +1,6 @@
 target
-.mvn
 .git
-.gitignore
 *.log
 *.tmp
 *.md
-Dockerfile
+data/
