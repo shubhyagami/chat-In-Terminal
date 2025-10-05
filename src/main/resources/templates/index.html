@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Terminal Chat</title>
+  <link rel="stylesheet" th:href="@{/css/terminal.css}" href="/css/terminal.css">
+  </head>
+  <body>
+    <div class="boot-screen">
+      <pre id="boot-text" class="terminal"></pre>
+      <div class="center-card">
+        <h2>Enter chatroom name</h2>
+        <input id="room-input" placeholder="room-name" />
+        <button id="join">Create link</button>
+        <div id="link-area"></div>
+      </div>
+    </div>
+
+    <footer class="app-footer">Designed by shubh kumar</footer>
+
+    <script th:src="@{/js/boot.js}" src="/js/boot.js"></script>
+  </body>
+</html>

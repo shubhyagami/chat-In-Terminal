@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Room</title>
+  <link rel="stylesheet" th:href="@{/css/terminal.css}" href="/css/terminal.css" />
+  </head>
+  <body>
+    <div class="boot-screen" id="room-root" th:attr="data-room=${room}">
+      <div class="center-card show" id="name-modal">
+        <h3>Enter your name to join</h3>
+        <input id="username" placeholder="Your name" />
+        <button id="enter-room">Enter</button>
+      </div>
+
+      <div class="terminal" id="chat-area" style="display:none">
+        <div class="room-header">Room: <span id="room-name" th:text="${room}"></span></div>
+        <div id="output" class="output"></div>
+        <div class="input-area">
+          <div class="input-line">
+            <span class="prompt">$ </span>
+            <input id="message" placeholder="Type your message..." autocomplete="off" />
+            <button id="send-btn" class="send" title="Send">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" fill="#000"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="app-footer">Designed by shubh kumar</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <script th:src="@{/js/room.js}" src="/js/room.js"></script>
+  </body>
+</html>
