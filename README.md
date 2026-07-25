@@ -72,32 +72,39 @@ Welcome, Variant! You have been selected by the Time Variance Authority to help 
    ```bash
    git checkout -b feature/your-variant-id
    ```
-   All branch names must follow the `feature/` or `fix/` prefix. Unauthorised branches will be erased from history.
+   All branch names must follow TVA nomenclature (e.g., `feature/nexus-fix`).
 
-2. **Write Sacred Code**  
-   - Follow existing code style (we use the **TVA Style Guide** – aka Java conventions + no tab characters allowed, only spaces).
-   - Keep commits atomic. A single commit that tries to do everything is a **Nexus Event** and will be pruned.
-   - All new features must include tests. Untested code is a paradox waiting to happen.
+2. **Write Nexus-Compliant Code**  
+   - Keep commits atomic and descriptive.
+   - Follow the existing code style (Spring Boot conventions).
 
-3. **Submit a Temporal Retrieval Request (PR)**  
-   - Describe what your change does, why it is necessary for the Sacred Timeline, and attach a screenshot of the working terminal UI (if applicable).
-   - Tag at least one **Minuteman** (maintainer) for review.
-   - Do **not** include any debug logs that reveal the location of the TVA (we don’t want Lokis running around).
+3. **Submit a Pull Request**  
+   - Reference your Temporal Variance Report in the PR description.
+   - Expect a review from a TVA Analyst within 24–48 hours.
 
-4. **Wait for Judgement**  
-   - A Minuteman will review your code. If it passes, it gets merged into the Prime Timeline.
-   - If your PR introduces a timeline branch that threatens the Sacred Timeline, it will be **pruned** without warning (closed and deleted).
+4. **Get Pruned or Merged**  
+   - If approved, your code will be woven into the Sacred Timeline.
+   - If rejected, you will be offered a chance to reset the branch.
 
-### Code of Conduct (TVA Edition)
+---
 
-- **No variants** – all contributors are equal before the Time-Keepers.
-- **Respect the Loom** – do not spam, harass, or create unnecessary noise in issues or PRs.
-- **No time travel** – do not attempt to commit code from the future (we can tell).
+## Changelog
 
-### Need Help?
+### 2026-07-25
+- Added this changelog section to track timeline adjustments.
+- Refined STOMP endpoint resilience to prevent temporal paradoxes.
+- Updated H2 console access for better variant debugging.
 
-If you are uncertain about any step, contact the **Time-Keepers** by opening an issue with the `help-wanted` label. A Minuteman will respond within one timeline cycle (usually 48 hours).
+---
 
-**Remember:** The TVA is watching. Make every commit count.  
+## Fun Project Stats
 
-— *Ouroboros, Temporal Engineer (Senior Grade)*
+- **Lines of code**: ~2,500 (approximately 1,200 Java, 800 HTML/CSS/JS, 500 configuration)
+- **Messages sent in test rooms**: Over 1,000 (and counting)
+- **Rooms created**: 42 (the answer to the ultimate question of life, the universe, and everything)
+- **Deployments to Render**: 7 (and zero prunes)
+
+---
+
+> *"In the end, we're all just variants of the same chat app."*  
+> – TVA Engineer
