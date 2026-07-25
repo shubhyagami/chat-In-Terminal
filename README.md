@@ -1,7 +1,7 @@
 ┌─────────────────────────────────────────────────────────────────────────┐
 │   ___ _   _    _    ___ _   _ _____ ___  ___   _   _ ___ ____          │
-│  / __| | | |  / \  |_ _| \ | |_   _/ _ \| _ \ | \ | |_ _|  _ \        │
-│ | (__| |_| | / _ \  | ||  \| | | || | | |   / |  \| || || |_) |       │
+│  / __| | | |  /  \  |_ _| \| |_   _/ _ \|  _ \ | \  | |_ _|  _ \        │
+│ | (__| |_| | / _  \ | ||  \| | || | | | |   / |  \  | || || |_) |       │
 │  \___|\___/ /_/ \_\___|_|\__| |_| |_| |_|_|_\ |_|\__|___|____/        │
 │          Chat in Terminal – Real‑time Java WebSocket Chat              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -51,60 +51,22 @@ docker run -p 8080:8080 chatinterminal:latest
 ## Useful endpoints
 - Web UI: `/`
 - Room page: `/room/{room}`
-- H2 console: `/h2-console` (enabled in dev)
-- History API: `/api/messages/{room}`
+- H2 console: `/h2-console` (enabled)
 
 ---
 
-## Contributing (TVA-Approved)
+## 📜 Sacred Timeline Roadmap
 
-Welcome, Variant! You have been selected by the Time Variance Authority to help maintain the **Sacred Timeline** of `chatinterminal`. Your contributions must not create branching realities—any pull request that deviates from the Prime Directive will be **pruned** with extreme prejudice.
+As the TVA Temporal Engineer, I have drafted the following branched timelines for this project. Our current timeline is stable, but these enhancements will prevent future multiversal fragmentation (and make the app a lot cooler).
 
-### Before You Fork
+### ⏳ Temporal Enhancements
+- [ ] **Chronal Disguises (UI Themes):** Implement alternate terminal themes (Amber, Retro Green-Screen,Matrix) so variants feel at home in their own timeline.
+- [ ] **Pruning Mechanism (Message Reactions):** Allow users to "prune" messages with emoji reactions, keeping the timeline clean.
+- [ ] **Nexus Event Alerts (Typing Indicators):** Broadcast temporal disruptions—meaning "User is typing..." indicators across the Whisper-Socket network before a nexus event occurs.
 
-1. **Check the Nexus** – Review our [open issues](https://github.com/your-repo/chatinterminal/issues) to see if a Temporal Anomaly has already been reported.
-2. **Sync with the Loom** – Ensure your fork is up to date with the **Prime Timeline** (the `main` branch). A divergent fork may attract a Reset Charge.
-3. **File a Temporal Variance Report** – Open an issue describing what you intend to change. Minutemen will review it before you deploy your Hunters.
+### 🌀 Multiversal Architectural Upgrades
+- [ ] **Time-Keeper Database Migration:** Upgrade from H2 to PostgreSQL for larger persistent chronologies (Goliath-scale memory).
+- [ ] **Standardized Mutant Cycles (CI/CD):** Integrate GitHub Actions to automatically test new timeline branches via PR pipelines.
+- [ ] **Time-Twister Audio Cues:** Implement Web Audio API to emit a retro terminal "beep" or "boop" for new room joins.
 
-### The Process
-
-1. **Create a Timeline Branch**  
-   ```bash
-   git checkout -b feature/your-variant-id
-   ```
-   All branch names must follow TVA nomenclature (e.g., `feature/nexus-fix`).
-
-2. **Write Nexus-Compliant Code**  
-   - Keep commits atomic and descriptive.
-   - Follow the existing code style (Spring Boot conventions).
-
-3. **Submit a Pull Request**  
-   - Reference your Temporal Variance Report in the PR description.
-   - Expect a review from a TVA Analyst within 24–48 hours.
-
-4. **Get Pruned or Merged**  
-   - If approved, your code will be woven into the Sacred Timeline.
-   - If rejected, you will be offered a chance to reset the branch.
-
----
-
-## Changelog
-
-### 2026-07-25
-- Added this changelog section to track timeline adjustments.
-- Refined STOMP endpoint resilience to prevent temporal paradoxes.
-- Updated H2 console access for better variant debugging.
-
----
-
-## Fun Project Stats
-
-- **Lines of code**: ~2,500 (approximately 1,200 Java, 800 HTML/CSS/JS, 500 configuration)
-- **Messages sent in test rooms**: Over 1,000 (and counting)
-- **Rooms created**: 42 (the answer to the ultimate question of life, the universe, and everything)
-- **Deployments to Render**: 7 (and zero prunes)
-
----
-
-> *"In the end, we're all just variants of the same chat app."*  
-> – TVA Engineer
+<sub>*Note: Any unauthorized tampering with the timeline branch must be approved by the Time-Keepers and strictly follow the Sacred Commit Guidelines.*</sub>
