@@ -66,7 +66,20 @@ As the TVA Temporal Engineer, I have drafted the following branched timelines fo
 
 ### 🌀 Multiversal Architectural Upgrades
 - [ ] **Time-Keeper Database Migration:** Upgrade from H2 to PostgreSQL for larger persistent chronologies (Goliath-scale memory).
-- [ ] **Standardized Mutant Cycles (CI/CD):** Integrate GitHub Actions to automatically test new timeline branches via PR pipelines.
-- [ ] **Time-Twister Audio Cues:** Implement Web Audio API to emit a retro terminal "beep" or "boop" for new room joins.
+- [ ] **Standardized Mutant Cycles (CI/CD):** Integr
 
-<sub>*Note: Any unauthorized tampering with the timeline branch must be approved by the Time-Keepers and strictly follow the Sacred Commit Guidelines.*</sub>
+## 🧭 Pro Tips for Temporal Agents
+
+- **Room shortcuts:** Append `/room/your-room-name` to any browser URL to instantly create or join a room. Perfect for temporal task forces.
+- **Persistence is key:** All messages survive server restarts thanks to file-based H2. Your timeline never truly resets.
+- **STOMP deep dive:** Use a WebSocket client like `wscat` to connect to `/ws` directly and inspect the raw temporal data flow.
+- **Docker for variant testing:** Spin up multiple container instances on different ports to simulate inter‑branch communication.
+
+## 📅 Temporal Changelog – 2026-07-27
+
+- **Added** `Pro Tips for Temporal Agents` section to help agents navigate the chat streams.
+- **Added** this changelog entry – because even the TVA records its own history.
+- **Enhanced** README with creative embellishments while maintaining temporal integrity.
+
+> *“Time is not a straight line; it’s a messy, branching WebSocket connection. Keep your messages persistent.”*  
+> — Anonymous TVA Engineer
