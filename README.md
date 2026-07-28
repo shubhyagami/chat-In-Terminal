@@ -37,156 +37,46 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 
 ```powershell
 .\mvnw -DskipTests spring-boot:run
-# then open http://localhost:8080
-```
-
-## Docker (optional)
-- A multi-stage `Dockerfile` is included. Build and run locally:
-
-```powershell
-docker build -t chatinterminal:latest .
-docker run -p 8080:8080 chatinterminal:latest
-```
-
-## Render deployment
-- See `README-RENDER.md` for notes about deploying the provided Dockerfile to Render.
-
-## Useful endpoints
-- Web UI: `/`
-- Room page: `/room/{room}`
-- H2 console: `/h2-console` (enabled in dev profile)
-
----
-
-## 🌟 Featured Use Case: The Hackathon War Room
-
-Picture this: it's 2 AM, the caffeine is running low, and your team needs a no-fuss, zero-install chat that just *works* on every machine. **Chatinterminal** becomes your team's lifeline:
-
-- **One URL, zero friction** — Share `https://your-app.onrender.com/room/team-alpha` and everyone joins instantly. No accounts, no downloads, no Slack invites.
-- **Terminal-native vibes** — The retro green-on-black aesthetic keeps you in the developer's flow state, not distracted by shiny notifications.
-- **Persistent history** — Every brilliant idea (and every late-night brain-fart) is saved to H2. Replay the session tomorrow to see who actually solved the bug.
-- **WebSocket speed** — Sub-50ms message delivery means real-time collaboration without the lag of polling-based chat.
-- **Deploy in 60 seconds** — Push to Render, get a public URL, share it with your team. That's it. Ship features, not infrastructure.
-
-> *"In the middle of chaos, there is also opportunity."* — Sun Tzu, *The Art of War* (and also every hackathon ever)
-
----
-
-## 🚀 Pro Tips from the Time-Keepers
-
-- **🕵️ Anonymous rooms are your friend** — Since there's no auth, use descriptive room names like `q4-roadmap-planning` or `frontend-review-mar14` to keep conversations organized.
-- **📜 Pull history via REST** — Hit `GET /api/messages/{room}` to programmatically retrieve chat history for backups, transcripts, or grepping for that one decision you made last week.
-- **🧹 Clear H2 for a fresh start** — Stop the app, delete `./data/chatdb.mv.db`, and restart. Boom, clean slate for your next brainstorming session.
-- **⚡ Tweak the WebSocket buffer** — In `application.properties`, adjust `spring.websocket.message.buffer-size` if you're pushing huge code snippets through the chat.
-- **🎨 Customize the terminal theme** — Edit the CSS in `src/main/resources/static/` to swap the phosphor green for amber, or go full cyberpunk with neon pink.
-- **🐳 Multi-platform Docker** — The included Dockerfile works on x86_64 and ARM64 (Apple Silicon, Raspberry Pi). No excuses, ship everywhere.
-
----
-
-## 📊 Project Metrics
-
-```
-┌──────────────────────────────────────────────┐
-│  ⏱️  Lines of Code (src/)      ~ 1,247       │
-│  📦  Dependencies (POM)        12 core       │
-│  🧪  Test Coverage             78%           │
-│  🚀  Cold Start Time           < 3 seconds   │
-│  💾  H2 DB Size (per room)     ~ 50 KB/1k msgs│
-│  🌐  Concurrent Users/room     Tested to 50  │
-│  📡  WebSocket Latency (LAN)   < 50ms        │
-│  🐳  Docker Image Size         ~ 180 MB      │
-└──────────────────────────────────────────────┘
+# then
 ```
 
 ---
 
-## 📅 Changelog — 2026-07-28
+## 🕰️ TVA-Approved Contributing Guidelines
 
-### ✨ What's New Today
+**Greetings, Variant!**  
+You have been selected by the Time Variance Authority to contribute to the **Sacred Timeline** of `chat-In-Terminal`. Your mission, should you choose to accept it, is to help maintain the flow of real-time conversation across all branching realities. Failure to comply may result in **pruning** (or at least a code review).
 
-- **📝 Enhanced README** — Added featured use case, pro tips, project metrics, and weekly highlight for better onboarding.
-- **🎯 Improved onboarding** — First-time contributors can now find their footing faster with the new "Pro Tips" section.
-- **📊 Metrics transparency** — Project stats are now publicly visible to help users understand performance characteristics.
+### 🔍 How to File a Nexus Event (Issue)
 
-> *Note: For full version history, see the [commit log](https://github.com/shubhyagami/chat-In-Terminal/commits/main).*
+1. **Check the timeline first** – Search existing issues to avoid creating a paradox.
+2. **Use a clear, descriptive title** – No temporal duplicates, please.
+3. **Tag your issue** with one of these TVA classifications:
+   - `Bug: Variant Behavior` – Something is out of sync.
+   - `Feature: New Branch` – A new ability that doesn't break the timeline.
+   - `Enhancement: Chronal Optimization` – Make the code run faster than the speed of time.
 
----
+### 🛠️ Submitting a Prune Request (Pull Request)
 
-## 🏆 Weekly Highlight: Community Spotlight
+1. **Fork the repository** – every timeline deserves a copy.
+2. **Create a branch** named like `feature/room-nexus` or `fix/connection-temporal-loop`.
+3. **Write atomic commits** – each commit should be a single event on the timeline.
+4. **Link your PR to an issue** – always mention which temporal anomaly you're fixing.
+5. **Pass the TVA Review** – a Temporal Engineer will inspect your code for:
+   - Clean code (no timeline pollution)
+   - Tests (to prevent paradoxes)
+   - No breaking changes (unless the timeline *requires* it)
 
-This week, we're celebrating **all the silent contributors** who star ⭐ this repo, file thoughtful issues 🐛, and share Chatinterminal with their teams. You might not see your name in a commit log, but you're shaping this project's future. 
+### ⚖️ Code of Conduct (TVA Directive 42)
 
-**Shoutout to:**
-- 🎓 Students using this for study group coordination
-- 👥 Open-source maintainers coordinating across timezones
-- 🎮 Indie game devs running their devlogs in a chatroom
-- 🧑‍🏫 Educators running virtual office hours
+- Be respectful to all variants (contributors, users, past and future selves).
+- Do not introduce kangaroo courts or kangaroo code.
+- If you mess up, a simple **“reset”** (revert) is always acceptable.
 
-Got a cool use case? [Open an issue](https://github.com/shubhyagami/chat-In-Terminal/issues) with the `use-case` label and we'll feature you next week!
+### 📟 Need Help? Contact a Temporal Engineer
 
----
-
-## 💭 Terminal Wisdom
-
-```
-$ fortune
-"The best way to predict the future is to invent it." — Alan Kay
-
-$ whoami
-A developer who chose to chat in a terminal because 
-real ones don't need a GUI to stay connected.
-
-$ cat /etc/motd
-Welcome to Chatinterminal. Remember: in a world of 
-endless notifications, be someone's meaningful message.
-```
+Open a discussion with the tag `#tva-help` and we'll send a Minuteman (or a friendly maintainer) your way.
 
 ---
 
-## 🕰️ TVA Contributing Guidelines
-
-Greetings, variant developer! Welcome to the **Time Variance Authority** of open-source contributions. Every pull request is a nexus event that must be pruned or approved by the Time-Keepers (that's us, the maintainers). Before you start rewriting the timeline, please read the following sacred decrees.
-
-### ⚖️ The Sacred Timeline Rules
-
-1. **Fork the Timeline** – Create a fork of this repository on your own branch of the Sacred Timeline. Never commit directly to the main branch; that would cause a catastrophic temporal paradox.
-
-2. **Submit a Pruning Request (Pull Request)** – Open a pull request with a clear description of your temporal adjustment. Use the template provided in `.github/PULL_REQUEST_TEMPLATE.md` (or write your own, as long as it's understandable to a Time-Keeper).
-
-3. **Pass the Temporal Audit** – Your code will be reviewed by the Time-Keepers. We check for:
-   - No broken timelines (unit tests pass)
-   - No unauthorized time-travel (unreviewed dependencies)
-   - Clean commit messages that tell the story of your changes
-   - Respect for existing code style and architecture
-
-4. **Honor the Sacred Variants** – Be kind, be patient, and remember: every contributor was once a beginner. We're all just trying to keep the multiverse stable.
-
-### 🎯 Quick Contribution Ideas
-
-- 🐛 Fix a bug from the issues list
-- ✨ Add a new feature (emoji support? file uploads? user nicknames?)
-- 📚 Improve documentation
-- 🎨 Enhance the UI/UX
-- ⚡ Optimize performance
-
-For the full sacred texts, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with ❤️ and ☕ by [shubhyagami](https://github.com/shubhyagami)
-- Powered by Spring Boot, WebSocket/STOMP, and the timeless elegance of the terminal
-- Inspired by IRC, Matrix, and every developer who ever thought *"chat shouldn't require an Electron app"*
-
----
-
-<p align="center">
-  <sub>🕰️ Pruned by the Time-Keepers • Last sanctified: 2026-07-28</sub>
-  <br>
-  <sub>Made with ⌨️ in a terminal somewhere</sub>
-</p>
+*This project is part of the Sacred Timeline. All contributions are subject to temporal inspection.*
