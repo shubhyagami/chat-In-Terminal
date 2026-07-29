@@ -58,25 +58,30 @@ You have been selected by the Time Variance Authority to contribute to the **Sac
 
 ### 🛠️ Submitting a Prune Request (Pull Request)
 
-1. **Fork the repository** – every timeline deserves a copy.
-2. **Create a branch** named like `feature/room-nexus` or `fix/connection-temporal-loop`.
-3. **Write atomic commits** – each commit should be a single event on the timeline.
-4. **Link your PR to an issue** – always mention which temporal anomaly you're fixing.
-5. **Pass the TVA Review** – a Temporal Engineer will inspect your code for:
-   - Clean code (no timeline pollution)
-   - Tests (to prevent paradoxes)
-   - No breaking changes (unless the timeline *requires* it)
-
-### ⚖️ Code of Conduct (TVA Directive 42)
-
-- Be respectful to all variants (contributors, users, past and future selves).
-- Do not introduce kangaroo courts or kangaroo code.
-- If you mess up, a simple **“reset”** (revert) is always acceptable.
-
-### 📟 Need Help? Contact a Temporal Engineer
-
-Open a discussion with the tag `#tva-help` and we'll send a Minuteman (or a friendly maintainer) your way.
+1. **Fork the repository** – every timeline deserves a copy
 
 ---
 
-*This project is part of the Sacred Timeline. All contributions are subject to temporal inspection.*
+## 📅 Changelog
+
+### 2026-07-30 (Sacred Timeline Update)
+
+- **New:** Added `Pro Tips` section to help users get the most out of chat-In-Terminal.
+- **New:** Introduced `/room/{room}` endpoint for dynamic room creation.
+- **Fixed:** Message history now correctly loads on room join (was missing initial fetch for new rooms).
+- **Enhanced:** WebSocket reconnection logic improved – no more dropped connections during timeline shifts.
+
+---
+
+## 💡 Pro Tips
+
+- **Instant room switch** – Change the URL directly to `/room/your-new-room` without restarting the app. The WebSocket will reconnect automatically.
+- **Persist across reboots** – The H2 database file (`chatdb`) is stored in the project root. Keep it safe to preserve your message history across timelines.
+- **Minimal client setup** – No JavaScript frameworks required. Just a modern browser with WebSocket support (every variant qualifies).
+- **Monitor with STOMP** – Use browser dev tools or a WebSocket client (e.g., `wscat`) to inspect STOMP frames sent to `/ws` – great for debugging temporal anomalies.
+- **Scale horizontally** – Deploy multiple instances behind a load balancer and share the same H2 database (or switch to PostgreSQL) for a multi‑universe chat experience.
+
+---
+
+*“In the end, all conversations converge on the Sacred Timeline.”*  
+– TVA Handbook, Chapter 7
