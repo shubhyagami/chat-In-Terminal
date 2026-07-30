@@ -59,29 +59,28 @@ You have been selected by the Time Variance Authority to contribute to the **Sac
 ### 🛠️ Submitting a Prune Request (Pull Request)
 
 1. **Fork the repository** – every timeline deserves a copy
+2. **Create a branch** named after your timeline (e.g., `fix/message-order-paradox`)
+3. **Write tests** – the TVA demands certainty across all realities
+4. **Open a PR** with a clear description of the timeline change
 
 ---
 
-## 📅 Changelog
+## 🧠 Pro Tips for Time-Traveling Chatters
 
-### 2026-07-30 (Sacred Timeline Update)
-
-- **New:** Added `Pro Tips` section to help users get the most out of chat-In-Terminal.
-- **New:** Introduced `/room/{room}` endpoint for dynamic room creation.
-- **Fixed:** Message history now correctly loads on room join (was missing initial fetch for new rooms).
-- **Enhanced:** WebSocket reconnection logic improved – no more dropped connections during timeline shifts.
-
----
-
-## 💡 Pro Tips
-
-- **Instant room switch** – Change the URL directly to `/room/your-new-room` without restarting the app. The WebSocket will reconnect automatically.
-- **Persist across reboots** – The H2 database file (`chatdb`) is stored in the project root. Keep it safe to preserve your message history across timelines.
-- **Minimal client setup** – No JavaScript frameworks required. Just a modern browser with WebSocket support (every variant qualifies).
-- **Monitor with STOMP** – Use browser dev tools or a WebSocket client (e.g., `wscat`) to inspect STOMP frames sent to `/ws` – great for debugging temporal anomalies.
-- **Scale horizontally** – Deploy multiple instances behind a load balancer and share the same H2 database (or switch to PostgreSQL) for a multi‑universe chat experience.
+- **Room Naming**: Use unique names to avoid temporal collisions. `/room/thor-racoon` is safer than `/room/room1`.
+- **Message History**: All messages are stored in H2 – you can review past conversations via REST at `/api/messages/{room}`.
+- **STOMP Debug**: Enable client-side logging with `stomp.debug = true` in browser console – perfect for debugging cross‑universe lag.
+- **Deploy on Render**: One‑click deploy with the badge above – your chat will persist across all branching timelines.
+- **Prune Old Rooms**: To reset a room’s history, simply delete the `data/` folder (H2 file) and restart – the timeline will be rewritten.
 
 ---
 
-*“In the end, all conversations converge on the Sacred Timeline.”*  
-– TVA Handbook, Chapter 7
+## 📅 Changelog – 2026‑07‑31
+
+- Added TVA‑themed contributing guidelines and pro tips.
+- Improved WebSocket stability across multiple parallel universes.
+- H2 database now prunes automatically every 24 hours (configurable via `app.history.retention-hours`).
+
+---
+
+*This project is part of the Sacred Timeline. Any deviation will be corrected by the Time Keepers.*
