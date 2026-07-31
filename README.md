@@ -38,49 +38,49 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 ```powershell
 .\mvnw -DskipTests spring-boot:run
 # then
-```
 
 ---
 
-## 🕰️ TVA-Approved Contributing Guidelines
+## 🕰️ Contributing – TVA Temporal Style
 
-**Greetings, Variant!**  
-You have been selected by the Time Variance Authority to contribute to the **Sacred Timeline** of `chat-In-Terminal`. Your mission, should you choose to accept it, is to help maintain the flow of real-time conversation across all branching realities. Failure to comply may result in **pruning** (or at least a code review).
+Welcome, Variant! You've been pruned from your timeline and recruited to help us maintain the Sacred Timeline of **Chatinterminal**. All contributions must pass through the Time Variance Authority's strict approval process. Follow these temporal protocols:
 
-### 🔍 How to File a Nexus Event (Issue)
+### 🔧 Prerequisites
+- You must have a **TemPad** (your local Git clone) synced with the Sacred Repository.
+- Install the **Minutemen Toolkit** (Java 17+, Maven, and a text editor that respects linear time).
+- Know your **Variant ID** (GitHub username) – we’ll log every nexus event.
 
-1. **Check the timeline first** – Search existing issues to avoid creating a paradox.
-2. **Use a clear, descriptive title** – No temporal duplicates, please.
-3. **Tag your issue** with one of these TVA classifications:
-   - `Bug: Variant Behavior` – Something is out of sync.
-   - `Feature: New Branch` – A new ability that doesn't break the timeline.
-   - `Enhancement: Chronal Optimization` – Make the code run faster than the speed of time.
+### 📜 Nexus Event Guidelines
+1. **Create a new branch** from the Sacred Timeline (`main`):
+   ```bash
+   git checkout -b feature/my-nexus-event
+   ```
+2. **Prune divergent timelines** – ensure your code doesn’t create paradoxes (merge conflicts). Rebase often.
+3. **Write time-resistant tests** – every commit must pass `mvn test`. A failing test will trigger a **Reset Charge**.
+4. **Document your changes** in the PR description. Explain how they preserve the Sacred Timeline (or why a minor deviation is acceptable).
 
-### 🛠️ Submitting a Prune Request (Pull Request)
+### 🔍 Time-Keeper Code Review
+- A **TVA Analyst** (maintainer) will review your PR. Expect questions like:
+  > “Does this change prevent a Kree invasion of the WebSocket handshake?”
+- All reviews are final – no time loops allowed.
 
-1. **Fork the repository** – every timeline deserves a copy
-2. **Create a branch** named after your timeline (e.g., `fix/message-order-paradox`)
-3. **Write tests** – the TVA demands certainty across all realities
-4. **Open a PR** with a clear description of the timeline change
+### 🚀 Pruning a Bug (Reporting Issues)
+Found a timeline anomaly? File an **Incident Report** (GitHub Issue) with:
+- **Variant ID** (your GitHub username)
+- **Timeline coordinates** (steps to reproduce)
+- **Expected vs. actual behavior** (what the Sacred Timeline says vs. what you observed)
+- **Logs or screenshots** (we'll run a temporal scan)
+
+### 🏆 Rewards for Loyal Minutemen
+- Merged PRs earn you a **TVA Badge** (your name in the `CONTRIBUTORS.md` file).
+- First-time contributors receive a **Time Stick** (virtual high-five from the team).
+- Repetitive Nexus Events (spam, trolls) will be **reset to zero** (banned).
+
+### 🧪 Code of Conduct
+All variants must abide by the **TVA Code of Conduct**: be kind, stay in your timeline, and never try to escape the Void (no malicious code).
 
 ---
 
-## 🧠 Pro Tips for Time-Traveling Chatters
+*“All timelines lead to a better Chatinterminal. Do your duty, Variant.”*
 
-- **Room Naming**: Use unique names to avoid temporal collisions. `/room/thor-racoon` is safer than `/room/room1`.
-- **Message History**: All messages are stored in H2 – you can review past conversations via REST at `/api/messages/{room}`.
-- **STOMP Debug**: Enable client-side logging with `stomp.debug = true` in browser console – perfect for debugging cross‑universe lag.
-- **Deploy on Render**: One‑click deploy with the badge above – your chat will persist across all branching timelines.
-- **Prune Old Rooms**: To reset a room’s history, simply delete the `data/` folder (H2 file) and restart – the timeline will be rewritten.
-
----
-
-## 📅 Changelog – 2026‑07‑31
-
-- Added TVA‑themed contributing guidelines and pro tips.
-- Improved WebSocket stability across multiple parallel universes.
-- H2 database now prunes automatically every 24 hours (configurable via `app.history.retention-hours`).
-
----
-
-*This project is part of the Sacred Timeline. Any deviation will be corrected by the Time Keepers.*
+― The Time-Keepers
