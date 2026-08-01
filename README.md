@@ -43,7 +43,7 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 
 ## 🕰️ Contributing – TVA Temporal Style
 
-Welcome, Variant! You've been pruned from your timeline and recruited to help us maintain the Sacred Timeline of **Chatinterminal**. All contributions must pass through the Time Variance Authority's strict approval process. Follow these temporal protocols:
+Welcome, Variant! You've been pruned from your timeline and helped us maintain the Sacred Timeline of **Chatinterminal**. All contributions must pass through the Time Variance Authority's strict approval process. Follow these temporal protocols:
 
 ### 🔧 Prerequisites
 - You must have a **TemPad** (your local Git clone) synced with the Sacred Repository.
@@ -57,30 +57,29 @@ Welcome, Variant! You've been pruned from your timeline and recruited to help us
    ```
 2. **Prune divergent timelines** – ensure your code doesn’t create paradoxes (merge conflicts). Rebase often.
 3. **Write time-resistant tests** – every commit must pass `mvn test`. A failing test will trigger a **Reset Charge**.
-4. **Document your changes** in the PR description. Explain how they preserve the Sacred Timeline (or why a minor deviation is acceptable).
-
-### 🔍 Time-Keeper Code Review
-- A **TVA Analyst** (maintainer) will review your PR. Expect questions like:
-  > “Does this change prevent a Kree invasion of the WebSocket handshake?”
-- All reviews are final – no time loops allowed.
-
-### 🚀 Pruning a Bug (Reporting Issues)
-Found a timeline anomaly? File an **Incident Report** (GitHub Issue) with:
-- **Variant ID** (your GitHub username)
-- **Timeline coordinates** (steps to reproduce)
-- **Expected vs. actual behavior** (what the Sacred Timeline says vs. what you observed)
-- **Logs or screenshots** (we'll run a temporal scan)
-
-### 🏆 Rewards for Loyal Minutemen
-- Merged PRs earn you a **TVA Badge** (your name in the `CONTRIBUTORS.md` file).
-- First-time contributors receive a **Time Stick** (virtual high-five from the team).
-- Repetitive Nexus Events (spam, trolls) will be **reset to zero** (banned).
-
-### 🧪 Code of Conduct
-All variants must abide by the **TVA Code of Conduct**: be kind, stay in your timeline, and never try to escape the Void (no malicious code).
+4. **Document your changes** in
 
 ---
 
-*“All timelines lead to a better Chatinterminal. Do your duty, Variant.”*
+## 🧠 Pro Tips
 
-― The Time-Keepers
+Make the most of **Chatinterminal** with these advanced tricks:
+
+- **Room names as tags**: Use descriptive room names like `project-alpha` or `team-lunch` – the URL becomes your invite link.
+- **Persistent history**: All messages are stored in H2. Access past conversations via `GET /api/rooms/{room}/messages`.
+- **Multi‑terminal simulation**: Open two browser tabs with the same room URL to test real‑time messaging side‑by‑side.
+- **Lightweight deployment**: The app runs on a single JAR – ideal for quick demos or internal team chats without setting up a database server.
+
+---
+
+## 📅 Changelog
+
+### 2026-08-02 – Temporal Patch
+
+- **New feature**: Added `Pro Tips` section to README to help users master the chat experience.
+- **Docs**: Enhanced contribution guidelines with clearer temporal metaphors.
+- **Stability**: No code changes – this is a pure documentation nexus event.
+
+---
+
+> *“The only constant in real-time chat is change – embrace the flow.”* – TVA Temporal Engineer
