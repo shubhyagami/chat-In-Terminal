@@ -37,51 +37,60 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 
 ```powershell
 .\mvnw -DskipTests spring-boot:run
-# then open http://localhost:8080
+# then o
 ```
 
 ---
 
-## 🚀 Pro Tips – TVA Edition
+## 🕰️ Contributing – TVA Temporal Code Guidelines
 
-### 1. **Room Naming – Avoid Paradoxes**
-   Use short, descriptive room names (e.g., `nexus-42`). Long names may cause **temporal drift** (URL encoding issues). Stick to alphanumeric and hyphens.
+Welcome, Variant! You've been recruited by the Time Variance Authority to help maintain the **Sacred Timeline** of this chat application. Every pull request is a nexus event that must be pruned, approved, or integrated into the flow of time itself.
 
-### 2. **WebSocket – Keep Your TemPad Synced**
-   If messages stop flowing, your WebSocket connection may have been **pruned**. Reload the page – the STOMP client automatically reconnects.
+### 📜 The Temporal Code of Conduct
 
-### 3. **H2 Console – The Archives of Time**
-   Access the in‑memory database at `/h2-console` (JDBC URL: `jdbc:h2:file:./data/chatdb`). Use it to inspect past nexus events (messages). But beware: editing records could create **branched timelines** – for authorized Minutemen only.
+- **No branch shall fork the Sacred Timeline.** Always work from the `main` branch and create feature branches with meaningful names (e.g., `fix/room-creation`, `feat/typing-indicator`).
+- **Do not alter the past.** Never force-push to `main` without an approved review from a Time-Keeper (maintainer).
+- **Reset Charges are for bugs, not commits.** Use `git revert` or `git reset` only when absolutely necessary to correct a temporal anomaly.
 
-### 4. **Deploy on Render – No Temporal Reset Needed**
-   The project is ready for Render. Set environment variable `SPRING_PROFILES_ACTIVE=render` and ensure `PORT` is set. Your chat room will survive even a **multiverse collapse**.
+### 🛠 How to Contribute (Approved by the Time-Keepers)
 
-### 5. **Browser Console – You
+1. **File a Temporal Variance Report** – Open an issue describing the anomaly (bug) or enhancement you wish to introduce. Label it as `bug`, `feature`, or `documentation`.
+2. **Create a Nexus Event** – Fork the repository and clone your variant:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/chat-In-Terminal.git
+   cd chat-In-Terminal
+   git checkout -b fix/your-nexus-event
+   ```
+3. **Deploy the Minutemen** – Write clean, well-documented code. Run all tests:
+   ```bash
+   .\mvnw test
+   ```
+4. **Request a Temporal Approval** – Push your branch and open a pull request. In the description, reference the issue number and explain how your change affects the timeline.
+5. **Await the Time-Keeper's Judgement** – A maintainer will review your PR. If it passes, your variant will be merged into the Sacred Timeline. If it creates a paradox, you'll be asked to revise.
+
+### 🔧 What We’re Looking For
+
+- **UI/UX improvements** – Make the terminal look even more retro-futuristic.
+- **Room persistence** – Save room names and allow custom usernames.
+- **Typing indicators** – Show when a user is composing a message.
+- **Emoji support** – Because even the TVA needs to express temporal frustration.
+- **Performance optimizations** – Keep the timeline stable under high chat volume.
+
+### ⚡ Quick Commands for TVA Agents
+
+```powershell
+# Check if your local timeline is in sync
+git pull --rebase
+
+# View recent temporal anomalies (git log)
+git log --oneline --graph --all
+
+# Prune merged branches (clean up variants)
+git branch --merged | Select-String -NotMatch "main" | ForEach-Object { git branch -d $_.ToString().Trim() }
+```
+
 ---
 
-## 📅 Changelog – Temporal Update 2026-08-03
+Thank you for helping us maintain the Sacred Timeline. Together we ensure that Chatinterminal remains the only chat application that exists – and the only one that *should* exist.
 
-### Added
-- **Weekly Highlight** section to spotlight the coolest room of the week.
-- **Security hardening**: All WebSocket endpoints now require a valid temporal passcode (OK, that's a joke – but we did tighten STOMP header validation).
-- **Room auto‑expiry**: Unused rooms are pruned after 30 days of inactivity (prevents timeline clutter).
-
-### Changed
-- **Database location** moved from `./data/chatdb` to `./tva-archives/chatdb` to better align with TVA naming conventions.
-
-### Fixed
-- **Browser console truncation** – the incomplete tip from the previous release is now fully rendered (you can now read about WebSocket reconnection strategies in the browser console).
-
----
-
-## 🌟 Weekly Highlight – Room of the Week
-
-**Nexus‑42** – the most active chat room this week! Over 1,200 messages exchanged in the last 7 days.  
-> *"We started a heated debate on whether time is a flat circle or a Mobius strip. The WebSocket held up like a champ."* – Anonymous TVA agent
-
-Want your room featured? Just send a lot of messages and tag `@Minuteman` in the chat – we’re watching.
-
----
-
-> *“The only thing that makes life possible is permanent, intolerable uncertainty; not knowing what comes next.”* – Ursula K. Le Guin  
-> *(Adapted for temporal chat rooms: not knowing who will reply next.)*
+— **The Time-Keepers** (Maintainers of this Repository)
