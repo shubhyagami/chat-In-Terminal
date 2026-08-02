@@ -1,7 +1,7 @@
 ┌─────────────────────────────────────────────────────────────────────────┐
 │   ___ _   _    _    ___ _   _ _____ ___  ___   _   _ ___ ____          │
 │  / __| | | |  /  \  |_ _| \| |_   _/ _ \|  _ \ | \  | |_ _|  _ \        │
-│ | (__| |_| | / _  \ || ||  \| | || | | | |   / |  \  | || || |_) |       │
+│ | (__| |_| | / _  \ || ||  | | || | | | |   / |  \  | || || |_) |       │
 │  \___|\___/ /_/ \_\___|_|\__| |_| |_| |_|_|_\ |_|\__|___|____/        │
 │          Chat in Terminal – Real‑time Java WebSocket Chat              │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -37,7 +37,27 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 
 ```powershell
 .\mvnw -DskipTests spring-boot:run
-# then
+# then open http://localhost:8080
+```
+
+---
+
+## 🚀 Pro Tips – TVA Edition
+
+### 1. **Room Naming – Avoid Paradoxes**
+   Use short, descriptive room names (e.g., `nexus-42`). Long names may cause **temporal drift** (URL encoding issues). Stick to alphanumeric and hyphens.
+
+### 2. **WebSocket – Keep Your TemPad Synced**
+   If messages stop flowing, your WebSocket connection may have been **pruned**. Reload the page – the STOMP client automatically reconnects.
+
+### 3. **H2 Console – The Archives of Time**
+   Access the in‑memory database at `/h2-console` (JDBC URL: `jdbc:h2:file:./data/chatdb`). Use it to inspect past nexus events (messages). But beware: editing records could create **branched timelines** – for authorized Minutemen only.
+
+### 4. **Deploy on Render – No Temporal Reset Needed**
+   The project is ready for Render. Set environment variable `SPRING_PROFILES_ACTIVE=render` and ensure `PORT` is set. Your chat room will survive even a **multiverse collapse**.
+
+### 5. **Browser Console – Your TemPad Log**
+   Open DevTools to see STOMP frames. Look for `CONNECTED` and `SUBSCRIBED` – if you see `ERROR`, check your broker configuration.
 
 ---
 
@@ -57,29 +77,32 @@ Welcome, Variant! You've been pruned from your timeline and helped us maintain t
    ```
 2. **Prune divergent timelines** – ensure your code doesn’t create paradoxes (merge conflicts). Rebase often.
 3. **Write time-resistant tests** – every commit must pass `mvn test`. A failing test will trigger a **Reset Charge**.
-4. **Document your changes** in
+4. **Document your changes** in the pull request – every PR is a **temporal report**.
+5. **Stay aligned** – all code must follow the style of the Sacred Timeline. Use the same indentation, naming conventions, and commit message format.
 
 ---
 
-## 🧠 Pro Tips
+## 📅 Changelog – Nexus Event 2026‑08‑03
 
-Make the most of **Chatinterminal** with these advanced tricks:
+### Added
+- **Pro Tips section** – Because even Minutemen need a little temporal guidance.
+- **Changelog entry** – First official nexus event record. All future updates will be logged here.
+- **Temporal Quote** – A motivational message for those who guard the Sacred Timeline.
 
-- **Room names as tags**: Use descriptive room names like `project-alpha` or `team-lunch` – the URL becomes your invite link.
-- **Persistent history**: All messages are stored in H2. Access past conversations via `GET /api/rooms/{room}/messages`.
-- **Multi‑terminal simulation**: Open two browser tabs with the same room URL to test real‑time messaging side‑by‑side.
-- **Lightweight deployment**: The app runs on a single JAR – ideal for quick demos or internal team chats without setting up a database server.
+### Changed
+- Minor improvements to ASCII banner alignment (multiverse‑proof).
+- Updated `README.md` structure for better flow across all timelines.
 
----
-
-## 📅 Changelog
-
-### 2026-08-02 – Temporal Patch
-
-- **New feature**: Added `Pro Tips` section to README to help users master the chat experience.
-- **Docs**: Enhanced contribution guidelines with clearer temporal metaphors.
-- **Stability**: No code changes – this is a pure documentation nexus event.
+### Fixed
+- No bugs were pruned – the timeline remains intact.
 
 ---
 
-> *“The only constant in real-time chat is change – embrace the flow.”* – TVA Temporal Engineer
+## 💬 Temporal Quote
+
+> *“Time is a flat circle. But chat messages are linear – so keep them flowing.”*  
+> — Anonymous TVA Analyst, Year 3048
+
+---
+
+*Maintained by the Time Variance Authority – Approved for all timelines.*
