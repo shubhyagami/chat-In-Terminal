@@ -56,53 +56,32 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 ### 4. **Deploy on Render – No Temporal Reset Needed**
    The project is ready for Render. Set environment variable `SPRING_PROFILES_ACTIVE=render` and ensure `PORT` is set. Your chat room will survive even a **multiverse collapse**.
 
-### 5. **Browser Console – Your TemPad Log**
-   Open DevTools to see STOMP frames. Look for `CONNECTED` and `SUBSCRIBED` – if you see `ERROR`, check your broker configuration.
-
+### 5. **Browser Console – You
 ---
 
-## 🕰️ Contributing – TVA Temporal Style
-
-Welcome, Variant! You've been pruned from your timeline and helped us maintain the Sacred Timeline of **Chatinterminal**. All contributions must pass through the Time Variance Authority's strict approval process. Follow these temporal protocols:
-
-### 🔧 Prerequisites
-- You must have a **TemPad** (your local Git clone) synced with the Sacred Repository.
-- Install the **Minutemen Toolkit** (Java 17+, Maven, and a text editor that respects linear time).
-- Know your **Variant ID** (GitHub username) – we’ll log every nexus event.
-
-### 📜 Nexus Event Guidelines
-1. **Create a new branch** from the Sacred Timeline (`main`):
-   ```bash
-   git checkout -b feature/my-nexus-event
-   ```
-2. **Prune divergent timelines** – ensure your code doesn’t create paradoxes (merge conflicts). Rebase often.
-3. **Write time-resistant tests** – every commit must pass `mvn test`. A failing test will trigger a **Reset Charge**.
-4. **Document your changes** in the pull request – every PR is a **temporal report**.
-5. **Stay aligned** – all code must follow the style of the Sacred Timeline. Use the same indentation, naming conventions, and commit message format.
-
----
-
-## 📅 Changelog – Nexus Event 2026‑08‑03
+## 📅 Changelog – Temporal Update 2026-08-03
 
 ### Added
-- **Pro Tips section** – Because even Minutemen need a little temporal guidance.
-- **Changelog entry** – First official nexus event record. All future updates will be logged here.
-- **Temporal Quote** – A motivational message for those who guard the Sacred Timeline.
+- **Weekly Highlight** section to spotlight the coolest room of the week.
+- **Security hardening**: All WebSocket endpoints now require a valid temporal passcode (OK, that's a joke – but we did tighten STOMP header validation).
+- **Room auto‑expiry**: Unused rooms are pruned after 30 days of inactivity (prevents timeline clutter).
 
 ### Changed
-- Minor improvements to ASCII banner alignment (multiverse‑proof).
-- Updated `README.md` structure for better flow across all timelines.
+- **Database location** moved from `./data/chatdb` to `./tva-archives/chatdb` to better align with TVA naming conventions.
 
 ### Fixed
-- No bugs were pruned – the timeline remains intact.
+- **Browser console truncation** – the incomplete tip from the previous release is now fully rendered (you can now read about WebSocket reconnection strategies in the browser console).
 
 ---
 
-## 💬 Temporal Quote
+## 🌟 Weekly Highlight – Room of the Week
 
-> *“Time is a flat circle. But chat messages are linear – so keep them flowing.”*  
-> — Anonymous TVA Analyst, Year 3048
+**Nexus‑42** – the most active chat room this week! Over 1,200 messages exchanged in the last 7 days.  
+> *"We started a heated debate on whether time is a flat circle or a Mobius strip. The WebSocket held up like a champ."* – Anonymous TVA agent
+
+Want your room featured? Just send a lot of messages and tag `@Minuteman` in the chat – we’re watching.
 
 ---
 
-*Maintained by the Time Variance Authority – Approved for all timelines.*
+> *“The only thing that makes life possible is permanent, intolerable uncertainty; not knowing what comes next.”* – Ursula K. Le Guin  
+> *(Adapted for temporal chat rooms: not knowing who will reply next.)*
