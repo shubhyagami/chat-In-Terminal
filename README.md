@@ -54,43 +54,14 @@ Welcome, Variant! You've been recruited by the Time Variance Authority to help m
 
 ### 🛠 How to Contribute (Approved by the Time-Keepers)
 
-1. **File a Temporal Variance Report** – Open an issue describing the anomaly (bug) or enhancement you wish to introduce. Label it as `bug`, `feature`, or `documentation`.
-2. **Create a Nexus Event** – Fork the repository and clone your variant:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/chat-In-Terminal.git
-   cd chat-In-Terminal
-   git checkout -b fix/your-nexus-event
-   ```
-3. **Deploy the Minutemen** – Write clean, well-documented code. Run all tests:
-   ```bash
-   .\mvnw test
-   ```
-4. **Request a Temporal Approval** – Push your branch and open a pull request. In the description, reference the issue number and explain how your change affects the timeline.
-5. **Await the Time-Keeper's Judgement** – A maintainer will review your PR. If it passes, your variant will be merged into the Sacred Timeline. If it creates a paradox, you'll be asked to revise.
-
-### 🔧 What We’re Looking For
-
-- **UI/UX improvements** – Make the terminal look even more retro-futuristic.
-- **Room persistence** – Save room names and allow custom usernames.
-- **Typing indicators** – Show when a user is composing a message.
-- **Emoji support** – Because even the TVA needs to express temporal frustration.
-- **Performance optimizations** – Keep the timeline stable under high chat volume.
-
-### ⚡ Quick Commands for TVA Agents
-
-```powershell
-# Check if your local timeline is in sync
-git pull --rebase
-
-# View recent temporal anomalies (git log)
-git log --oneline --graph --all
-
-# Prune merged branches (clean up variants)
-git branch --merged | Select-String -NotMatch "main" | ForEach-Object { git branch -d $_.ToString().Trim() }
-```
+1. **File a Temporal Variance Report** – Open an issue describing the anomaly (bug) or enhancement you wish to introduce. Label it as `bug`, `feature`,
 
 ---
 
-Thank you for helping us maintain the Sacred Timeline. Together we ensure that Chatinterminal remains the only chat application that exists – and the only one that *should* exist.
+## 💡 Pro Tips for Terminal Chatters
 
-— **The Time-Keepers** (Maintainers of this Repository)
+- **Room naming** – Use descriptive, URL‑friendly names (e.g., `project-alpha-standup`) to keep channels organized.
+- **History access** – Messages are persisted in H2. You can fetch logs for any room via `GET /api/messages/{room}`.
+- **Multi‑window simulation** – Open the app in multiple browser tabs or terminals to simulate different users in the same room.
+- **Mobile ready** – The web interface works on mobile browsers – just share the room link.
+- **Security hint** – For private conversations, use hard‑to‑guess room names. (Authentication is planned for a future release.)
