@@ -38,30 +38,18 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 ```powershell
 .\mvnw -DskipTests spring-boot:run
 # then o
-```
-
 ---
 
-## 🕰️ Contributing – TVA Temporal Code Guidelines
+## 🚀 Temporal Roadmap
 
-Welcome, Variant! You've been recruited by the Time Variance Authority to help maintain the **Sacred Timeline** of this chat application. Every pull request is a nexus event that must be pruned, approved, or integrated into the flow of time itself.
+> *The TVA Temporal Engineer has reviewed the Sacred Timeline. To prevent terminal chat multiversal collapse, the following upgrades are planned across the timeplanes. Pruning delays may occur.*
 
-### 📜 The Temporal Code of Conduct
+- [ ] **Temporal Multi-Verse (v0.2.0)** — Implement persistent user avatars across sessions so identities remain stable when timelines branch.
+- [ ] **Minuteman Moderation (v0.3.0)** — Room roles and moderation commands (`/prune`, `/reset`, `/silence`) to maintain the Sacred Timeline of each room.
+- [ ] **Miss Minutes AI (v0.4.0)** — Automated welcome messages, FAQ hints, and temporal reminders delivered when users join a room.
+- [ ] **Time Door File Sharing (v0.5.0)** — Upload and share files through the terminal interface without uploading them to the Void.
+- [ ] **Chronomarker Emotes (v0.6.0)** — A curated emoji and reaction system themed around temporal consensus and timeline ping.
+- [ ] **TVA Analytics Console (v0.7.0)** — Optional metrics dashboard to monitor room activity, latency, and nexus event frequency.
+- [ ] **Alioth Resistance (v1.0.0)** — Full stress-tested release hardened for unexpected temporal surges and chaotic branching traffic.
 
-- **No branch shall fork the Sacred Timeline.** Always work from the `main` branch and create feature branches with meaningful names (e.g., `fix/room-creation`, `feat/typing-indicator`).
-- **Do not alter the past.** Never force-push to `main` without an approved review from a Time-Keeper (maintainer).
-- **Reset Charges are for bugs, not commits.** Use `git revert` or `git reset` only when absolutely necessary to correct a temporal anomaly.
-
-### 🛠 How to Contribute (Approved by the Time-Keepers)
-
-1. **File a Temporal Variance Report** – Open an issue describing the anomaly (bug) or enhancement you wish to introduce. Label it as `bug`, `feature`,
-
----
-
-## 💡 Pro Tips for Terminal Chatters
-
-- **Room naming** – Use descriptive, URL‑friendly names (e.g., `project-alpha-standup`) to keep channels organized.
-- **History access** – Messages are persisted in H2. You can fetch logs for any room via `GET /api/messages/{room}`.
-- **Multi‑window simulation** – Open the app in multiple browser tabs or terminals to simulate different users in the same room.
-- **Mobile ready** – The web interface works on mobile browsers – just share the room link.
-- **Security hint** – For private conversations, use hard‑to‑guess room names. (Authentication is planned for a future release.)
+> *All timeline projections are estimated and may shift if Miss Minutes decides to interfere.*
