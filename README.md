@@ -1,10 +1,6 @@
-┌─────────────────────────────────────────────────────────────────────────┐
-│   ___ _   _    _    ___ _   _ _____ ___  ___   _   _ ___ ____          │
-│  / __| | | |  /  \  |_ _| \| |_   _/ _ \|  _ \ | \  | |_ _|  _ \        │
-│ | (__| |_| | / _  \ || ||  | | || | | | |   / |  \  | || || |_) |       │
-│  \___|\___/ /_/ \_\___|_|\__| |_| |_| |_|_|_\ |_|\__|___|____/        │
-│          Chat in Terminal – Real‑time Java WebSocket Chat              │
-└─────────────────────────────────────────────────────────────────────────┘
+# Chat In Terminal
+
+A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. It allows users to create or join chat rooms via shareable links and communicate in real-time.
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![WebSocket](https://img.shields.io/badge/WebSocket-STOMP-blue?logo=socket.io)](https://stomp.github.io/)
@@ -12,51 +8,59 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Render](https://img.shields.io/badge/deploy%20on-Render-46E3B7?logo=render)](https://render.com/)
 [![Stars](https://img.shields.io/github/stars/shubhyagami/chat-In-Terminal?style=social)](https://github.com/shubhyagami/chat-In-Terminal)
-[![Last Commit](https://img.shields.io/github/last-commit/shubhyagami/chat-In-Terminal)](https://github.com/shubhyagami/chat-In-Terminal/commits/main)
-[![Issues](https://img.shields.io/github/issues/shubhyagami/chat-In-Terminal)](https://github.com/shubhyagami/chat-In-Terminal/issues)
-
-# Chat In Terminal
-
-A simple terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and H2.
 
 ## Features
-- Create or join rooms via shareable links: `/room/{room}`
-- Real-time chat using STOMP over WebSocket (endpoint: `/ws`)
-- Messages persisted to an H2 file-based database, with history available via REST
 
-## Quick start (Java + Maven)
+- **Room-based Chat:** Create or join isolated chat rooms via shareable links (`/room/{room}`).
+- **Real-time Messaging:** Instant message delivery using STOMP over WebSocket (endpoint: `/ws`).
+- **Message Persistence:** Chat history is saved to a file-based H2 database and can be retrieved via REST API.
 
-1. Build:
+## Getting Started
 
-```powershell
-cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
-.\mvnw -DskipTests package
+These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- **Java 17** or higher
+- **Maven** (The project includes a Maven wrapper, `mvnw`, so a local installation is optional)
+
+### Installation and Running
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/shubhyagami/chat-In-Terminal.git
+cd chat-In-Terminal
 ```
 
-2. Run:
+2. **Build the project:**
 
-```powershell
-.\mvnw -DskipTests spring-boot:run
+```bash
+./mvnw -DskipTests package
 ```
 
-## Temporal Logbook
+3. **Run the application:**
 
-> *"The timeline is always writing itself. I just make sure the punctuation is correct."* — TVA Temporal Engineer
+```bash
+./mvnw -DskipTests spring-boot:run
+```
 
-- **2026-08-06 23:58** — Nexus event detected and bounded.
-- **2026-08-06 23:59** — WebSocket pathways cleared for traffic.
-- **2026-08-07 00:02** — Documentation synchronized with the Sacred Timeline.
+Once running, the application will be available at `http://localhost:8080`.
 
-## 🚀 Temporal Roadmap
+## Roadmap
 
-> *The TVA Temporal Engineer has reviewed the Sacred Timeline. To prevent terminal chat multiversal collapse, the following upgrades are planned across the timeplanes. Pruning delays may occur.*
+- **Persistent User Avatars:** Retain user identities and avatars across sessions.
+- **Room Moderation:** Introduce roles and moderation commands (`/kick`, `/mute`, `/clear`).
+- **Automated Welcome Bots:** Provide helpful onboarding messages and FAQ hints when users join a room.
+- **File Sharing:** Allow file uploads and sharing directly through the terminal interface.
+- **Custom Emotes:** Implement an emoji and reaction system tailored for the terminal aesthetic.
+- **Analytics Dashboard:** Add a metrics panel to monitor room activity and latency.
+- **Performance Hardening:** Stress-test and optimize the system for high-traffic concurrent connections.
 
-- [ ] **Temporal Multi-Verse (v0.2.0)** — Implement persistent user avatars across sessions so identities remain stable when timelines branch.
-- [ ] **Minuteman Moderation (v0.3.0)** — Room roles and moderation commands (`/prune`, `/reset`, `/silence`) to maintain the Sacred Timeline of each room.
-- [ ] **Miss Minutes AI (v0.4.0)** — Automated welcome messages, FAQ hints, and temporal reminders delivered when users join a room.
-- [ ] **Time Door File Sharing (v0.5.0)** — Upload and share files through the terminal interface without uploading them to the Void.
-- [ ] **Chronomarker Emotes (v0.6.0)** — A curated emoji and reaction system themed around temporal consensus and timeline ping.
-- [ ] **TVA Analytics Console (v0.7.0)** — Optional metrics dashboard to monitor room activity, latency, and nexus event frequency.
-- [ ] **Alioth Resistance (v1.0.0)** — Full stress-tested release hardened for unexpected temporal surges and chaotic branching traffic.
+## Changelog
 
-> *All timeline projections are estimated and may shift if Miss Minutes decides to interfere.*
+### [0.1.0] - 2026-08-07
+- Established core real-time chat functionality using Spring Boot and STOMP.
+- Implemented room isolation via shareable URLs.
+- Added H2 database persistence for chat history.
+- Initial README documentation and setup instructions.
