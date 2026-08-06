@@ -15,14 +15,14 @@
 [![Last Commit](https://img.shields.io/github/last-commit/shubhyagami/chat-In-Terminal)](https://github.com/shubhyagami/chat-In-Terminal/commits/main)
 [![Issues](https://img.shields.io/github/issues/shubhyagami/chat-In-Terminal)](https://github.com/shubhyagami/chat-In-Terminal/issues)
 
-# Chatinterminal
+# Chat In Terminal
 
-Simple terminal-style chat web application built with Spring Boot, WebSocket (STOMP) and H2.
+A simple terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and H2.
 
 ## Features
 - Create or join rooms via shareable links: `/room/{room}`
 - Real-time chat using STOMP over WebSocket (endpoint: `/ws`)
-- Messages persisted to H2 (file-based) and history available via REST
+- Messages persisted to an H2 file-based database, with history available via REST
 
 ## Quick start (Java + Maven)
 
@@ -37,8 +37,15 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 
 ```powershell
 .\mvnw -DskipTests spring-boot:run
-# then o
----
+```
+
+## Temporal Logbook
+
+> *"The timeline is always writing itself. I just make sure the punctuation is correct."* — TVA Temporal Engineer
+
+- **2026-08-06 23:58** — Nexus event detected and bounded.
+- **2026-08-06 23:59** — WebSocket pathways cleared for traffic.
+- **2026-08-07 00:02** — Documentation synchronized with the Sacred Timeline.
 
 ## 🚀 Temporal Roadmap
 
@@ -53,20 +60,3 @@ cd "c:\Users\shubh\OneDrive - MSFT\Desktop\Spring Project\chatinterminal"
 - [ ] **Alioth Resistance (v1.0.0)** — Full stress-tested release hardened for unexpected temporal surges and chaotic branching traffic.
 
 > *All timeline projections are estimated and may shift if Miss Minutes decides to interfere.*
----
-
-### Temporal Update
-
-Auto-maintained entry for 2026-08-06 23:58 (chat-In-Terminal).
-
----
-
-### Temporal Update
-
-Auto-maintained entry for 2026-08-06 23:59 (chat-In-Terminal).
-
----
-
-### Temporal Update
-
-Auto-maintained entry for 2026-08-07 00:02 (chat-In-Terminal).
