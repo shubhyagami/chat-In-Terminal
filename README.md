@@ -1,10 +1,11 @@
 # Chat In Terminal
 
-A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. It allows users to create or join chat rooms via shareable links and communicate in real-time.
+A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. It allows users to create or join isolated chat rooms via shareable links and communicate in real-time.
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![WebSocket](https://img.shields.io/badge/WebSocket-STOMP-blue?logo=socket.io)](https://stomp.github.io/)
 [![Java](https://img.shields.io/badge/Java-17+-orange?logo=java)](https://openjdk.org/)
+[![H2 Database](https://img.shields.io/badge/Database-H2-0064ab?logo=h2)](https://www.h2database.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Render](https://img.shields.io/badge/deploy%20on-Render-46E3B7?logo=render)](https://render.com/)
 [![Stars](https://img.shields.io/github/stars/shubhyagami/chat-In-Terminal?style=social)](https://github.com/shubhyagami/chat-In-Terminal)
@@ -13,11 +14,11 @@ A terminal-style chat web application built with Spring Boot, WebSocket (STOMP),
 
 - **Room-based Chat:** Create or join isolated chat rooms via shareable links (`/room/{room}`).
 - **Real-time Messaging:** Instant message delivery using STOMP over WebSocket (endpoint: `/ws`).
-- **Message Persistence:** Chat history is saved to a file-based H2 database and can be retrieved via REST API.
+- **Message Persistence:** Chat history is saved to a file-based H2 database and can be retrieved via a REST API.
 
 ## Getting Started
 
-These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will help you get a copy of the project up and running on your local machine for development and testing.
 
 ### Prerequisites
 
