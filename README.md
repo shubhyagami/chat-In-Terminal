@@ -18,8 +18,6 @@ A terminal-style chat web application built with Spring Boot, WebSocket (STOMP),
 
 ## Getting Started
 
-These instructions will help you get a copy of the project up and running on your local machine for development and testing.
-
 ### Prerequisites
 
 - **Java 17** or higher
@@ -27,20 +25,20 @@ These instructions will help you get a copy of the project up and running on you
 
 ### Installation and Running
 
-1. **Clone the repository:**
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/shubhyagami/chat-In-Terminal.git
 cd chat-In-Terminal
 ```
 
-2. **Build the project:**
+2. Build the project:
 
 ```bash
 ./mvnw -DskipTests package
 ```
 
-3. **Run the application:**
+3. Run the application:
 
 ```bash
 ./mvnw -DskipTests spring-boot:run
