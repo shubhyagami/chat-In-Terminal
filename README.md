@@ -1,6 +1,6 @@
 # Chat In Terminal
 
-A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. It allows users to create or join isolated chat rooms via shareable links and communicate in real-time.
+A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. It enables users to create or join isolated chat rooms via shareable links and communicate in real-time.
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![WebSocket](https://img.shields.io/badge/WebSocket-STOMP-blue?logo=socket.io)](https://stomp.github.io/)
@@ -8,7 +8,7 @@ A terminal-style chat web application built with Spring Boot, WebSocket (STOMP),
 [![H2 Database](https://img.shields.io/badge/Database-H2-0064ab?logo=h2)](https://www.h2database.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Render](https://img.shields.io/badge/deploy%20on-Render-46E3B7?logo=render)](https://render.com/)
-[![Stars](https://img.shields.io/github/stars/shubhyagami/chat-In-Terminal?style=social)](https://github.com/shubhyagami/chat-In-Terminal)
+[![GitHub stars](https://img.shields.io/github/stars/shubhyagami/chat-In-Terminal?style=social)](https://github.com/shubhyagami/chat-In-Terminal)
 
 ## Features
 
