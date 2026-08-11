@@ -3,11 +3,10 @@
 A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. It enables users to create or join isolated chat rooms via shareable links and communicate in real-time.
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
-[![WebSocket](https://img.shields.io/badge/WebSocket-STOMP-blue?logo=socket.io)](https://stomp.github.io/)
 [![Java](https://img.shields.io/badge/Java-17+-orange?logo=java)](https://openjdk.org/)
+[![WebSocket](https://img.shields.io/badge/WebSocket-STOMP-blue?logo=socket.io)](https://stomp.github.io/)
 [![H2 Database](https://img.shields.io/badge/Database-H2-0064ab?logo=h2)](https://www.h2database.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
-[![Render](https://img.shields.io/badge/deploy%20on-Render-46E3B7?logo=render)](https://render.com/)
 [![GitHub stars](https://img.shields.io/github/stars/shubhyagami/chat-In-Terminal?style=social)](https://github.com/shubhyagami/chat-In-Terminal)
 
 ## Features
@@ -35,13 +34,13 @@ cd chat-In-Terminal
 2. Build the project:
 
 ```bash
-./mvnw -DskipTests package
+./mvnw clean package
 ```
 
 3. Run the application:
 
 ```bash
-./mvnw -DskipTests spring-boot:run
+./mvnw spring-boot:run
 ```
 
 Once running, the application will be available at `http://localhost:8080`.
@@ -63,3 +62,7 @@ Once running, the application will be available at `http://localhost:8080`.
 - Implemented room isolation via shareable URLs.
 - Added H2 database persistence for chat history.
 - Initial README documentation and setup instructions.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
