@@ -11,7 +11,7 @@ A terminal-style chat web application built with Spring Boot, WebSocket (STOMP),
 
 ## Features
 
-- **Room-based Chat:** Create or join isolated chat rooms via shareable links (`/room/{room}`).
+- **Room-based Chat:** Create or join isolated chat rooms using shareable links (`/room/{room}`).
 - **Real-time Messaging:** Instant message delivery using STOMP over WebSocket (endpoint: `/ws`).
 - **Message Persistence:** Chat history is saved to a file-based H2 database and can be retrieved via a REST API.
 
