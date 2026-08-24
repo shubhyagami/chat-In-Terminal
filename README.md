@@ -1,6 +1,6 @@
 # Chat In Terminal
 
-A terminal-style chat web application built with Spring Boot, WebSocket (STOMP), and an H2 database. Users can create or join isolated chat rooms via shareable links and communicate in real-time.
+A real-time, terminal-based chat web application built with Spring Boot, STOMP over WebSocket, and an H2 database. Users can create and join isolated chat rooms using shareable links and communicate instantly.
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-17+-orange?logo=java)](https://openjdk.org/)
@@ -11,16 +11,15 @@ A terminal-style chat web application built with Spring Boot, WebSocket (STOMP),
 
 ## Features
 
-- **Room-based Chat:** Create or join isolated chat rooms using shareable links (`/room/{room}`).
-- **Real-time Messaging:** Instant message delivery using STOMP over WebSocket (endpoint: `/ws`).
-- **Message Persistence:** Chat history is saved to a file-based H2 database and can be retrieved via a REST API.
+- **Isolated Rooms:** Create and join unique chat rooms using shareable URLs.
+- **Real-time Messaging:** Instant message delivery using STOMP over WebSocket.
+- **Persistent Chat History:** Chat logs are stored in an H2 database and can be retrieved via a REST API.
 
 ## Getting Started
 
-### Prerequisites
+### System Requirements
 
-- **Java 17** or higher
-- **Maven** (The project includes a Maven wrapper, `mvnw`, so a local installation is optional)
+- Java 17 or higher
 
 ### Installation and Running
 
@@ -31,37 +30,25 @@ git clone https://github.com/shubhyagami/chat-In-Terminal.git
 cd chat-In-Terminal
 ```
 
-2. Build the project:
-
-```bash
-./mvnw clean package
-```
-
-3. Run the application:
+2. Build and run the application:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-Once running, the application will be available at `http://localhost:8080`.
+The application will be available at `http://localhost:8080`.
 
-## Roadmap
+## Future Developments
 
 - **Persistent User Avatars:** Retain user identities and avatars across sessions.
-- **Room Moderation:** Introduce roles and moderation commands (`/kick`, `/mute`, `/clear`).
-- **Automated Welcome Bots:** Provide helpful onboarding messages and FAQ hints when users join a room.
-- **File Sharing:** Allow file uploads and sharing directly through the terminal interface.
-- **Custom Emotes:** Implement an emoji and reaction system tailored for the terminal aesthetic.
-- **Analytics Dashboard:** Add a metrics panel to monitor room activity and latency.
-- **Performance Hardening:** Stress-test and optimize the system for high-traffic concurrent connections.
+- **Moderation and Management:** Introduce roles and moderation commands for improved room management.
+- **File Sharing and Customization:** Allow file uploads and sharing directly through the terminal interface.
 
 ## Changelog
 
 ### [0.1.0] - 2026-08-07
-- Established core real-time chat functionality using Spring Boot and STOMP.
-- Implemented room isolation via shareable URLs.
-- Added H2 database persistence for chat history.
-- Initial README documentation and setup instructions.
+- Established core real-time chat functionality.
+- Implemented room isolation and H2 database persistence for chat history.
 
 ## License
 
