@@ -1,6 +1,6 @@
 # Chat In Terminal
 
-A lightweight, real‑time chat application that runs in a terminal and lets users create or join isolated chat rooms via shareable URLs. The app is built with Spring Boot, STOMP over WebSocket, and an H2 database for persistent chat history.
+A lightweight, terminal‑based chat application that lets you create or join isolated chat rooms via shareable URLs. It uses Spring Boot, STOMP over WebSocket, and an H2 database for persistent chat history.
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-17%2B-orange?logo=java)](https://openjdk.org/)
@@ -10,13 +10,17 @@ A lightweight, real‑time chat application that runs in a terminal and lets use
 [![GitHub stars](https://img.shields.io/github/stars/shubhyagami/chat-In-Terminal?style=social)](https://github.com/shubhyagami/chat-In-Terminal)
 
 ## Features
-- **Isolated Rooms**: Create and share unique chat rooms through URLs.
-- **Real‑time Messaging**: Instant message delivery using STOMP over WebSocket.
-- **Persistent History**: Store and retrieve chat logs in an H2 database via a REST API.
-- **Future Enhancements**: Avatar persistence, role‑based moderation, and file sharing.
+- **Isolated rooms** – each URL maps to its own independent chat room.  
+- **Real‑time messaging** – messages are delivered instantly via STOMP/WebSocket.  
+- **Persistent history** – every message is stored in an H2 database and can be retrieved through a REST API.  
+- **Upcoming enhancements** – avatar persistence, role‑based moderation, and file sharing.
+
+## Changelog (2026‑08‑29)
+- Polished the README and added concise installation instructions.  
+- Updated badges to reflect the latest Spring Boot and Java versions.  
 
 ## Prerequisites
-- Java 17 or later
+- Java 17 or later  
 - Maven (or the provided `./mvnw` wrapper)
 
 ## Getting Started
@@ -29,7 +33,7 @@ A lightweight, real‑time chat application that runs in a terminal and lets use
    ```bash
    ./mvnw spring-boot:run
    ```
-3. Open a terminal and navigate to `http://localhost:8080` to access the chat interface.
+3. Open `http://localhost:8080` in a browser to access the chat interface.  
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
