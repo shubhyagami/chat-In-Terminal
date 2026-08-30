@@ -17,7 +17,7 @@ A lightweight, terminal‑based chat application that lets you create or join is
 ## Features  
 
 - **Isolated rooms** – each URL maps to its own independent chat room.  
-- **Real‑time messaging** – messages are delivered instantly via STOMP/WebSocket.  
+- **Real‑time messaging** – messages are delivered instantly via STOMP over WebSocket.  
 - **Persistent history** – every message is stored in an H2 database and can be accessed through a REST API.  
 - **Upcoming enhancements** – avatar persistence, role‑based moderation, file sharing.  
 
@@ -25,7 +25,8 @@ A lightweight, terminal‑based chat application that lets you create or join is
 
 ## Changelog (2026‑08‑29)  
 
-- Refined the README and added concise installation instructions.  
+- Refined the README with clearer wording.  
+- Added concise installation instructions.  
 - Updated badges to reflect the latest Spring Boot and Java versions.  
 
 ---  
@@ -39,19 +40,15 @@ A lightweight, terminal‑based chat application that lets you create or join is
 
 ## Getting Started  
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/shubhyagami/chat-In-Terminal.git
-   cd chat-In-Terminal
-   ```
+1. Clone the repository  
+   git clone https://github.com/shubhyagami/chat-In-Terminal.git  
+   cd chat-In-Terminal  
 
-2. **Build and run**  
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+2. Build and run  
+   ./mvnw spring-boot:run  
 
-3. **Open the chat interface**  
-   Navigate to `http://localhost:8080` in your browser.  
+3. Open the chat interface  
+   Navigate to http://localhost:8080 in your browser  
 
 ---  
 
