@@ -1,6 +1,6 @@
 # Chat‑In‑Terminal
 
-A lightweight, terminal‑based chat application that lets you create or join isolated chat rooms via shareable URLs. Built with Spring Boot, STOMP over WebSocket, and an H2 database for persistent chat history.
+A lightweight terminal‑based chat application that lets you create or join isolated chat rooms via shareable URLs. Built with Spring Boot, STOMP over WebSocket, and an H2 database for persistent chat history.
 
 ---  
 
@@ -19,14 +19,14 @@ A lightweight, terminal‑based chat application that lets you create or join is
 - **Isolated rooms** – each URL maps to its own independent chat room.  
 - **Real‑time messaging** – messages are delivered instantly via STOMP over WebSocket.  
 - **Persistent history** – every message is stored in an H2 database and can be accessed through a REST API.  
-- **Upcoming enhancements** – avatar persistence, role‑based moderation, file sharing.  
+- **Upcoming enhancements** – avatar persistence, role‑based moderation, file sharing.
 
 ---  
 
 ## Changelog (2026‑08‑29)  
 
-- Refined the README with clearer wording.  
-- Added concise installation instructions.  
+- Refined wording throughout the README.  
+- Added clear installation steps.  
 - Updated badges to reflect the latest Spring Boot and Java versions.  
 
 ---  
@@ -34,21 +34,28 @@ A lightweight, terminal‑based chat application that lets you create or join is
 ## Prerequisites  
 
 - Java 17 or later  
-- Maven (or use the provided `./mvnw` wrapper)  
+- Maven (or the provided `./mvnw` wrapper)
 
 ---  
 
 ## Getting Started  
 
-1. Clone the repository  
-   git clone https://github.com/shubhyagami/chat-In-Terminal.git  
-   cd chat-In-Terminal  
+1. **Clone the repository**
 
-2. Build and run  
-   ./mvnw spring-boot:run  
+   ```bash
+   git clone https://github.com/shubhyagami/chat-In-Terminal.git
+   cd chat-In-Terminal
+   ```
 
-3. Open the chat interface  
-   Navigate to http://localhost:8080 in your browser  
+2. **Build and run**
+
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+3. **Open the chat interface**
+
+   Navigate to `http://localhost:8080` in your browser.
 
 ---  
 
