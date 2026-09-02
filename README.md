@@ -1,11 +1,93 @@
-# Chat‑In‑Terminal
+# Chat‑In‑Terminal  
 
-A lightweight terminal‑based chat application that lets you create or join isolated chat rooms via shareable URLs.  
-Built with Spring Boot, STOMP over WebSocket, and an H2 database for persistent chat history.
+A minimal terminal‑based chat system that lets a group share a URL and converse in real time.  
+The server is written in Spring Boot, communicates via STOMP over WebSocket, and keeps talks in an H2 database.
 
 ---
 
-## Badges
+## 🚀 Quickstart
+
+```bash
+# Clone the repo
+git clone https://github.com/shubhyagami/chat-In-Terminal.git
+cd chat-In-Terminal
+
+# Run the application (uses the Maven wrapper)
+./mvnw spring-boot:run
+```
+
+Open `http://localhost:8080` in a browser.  
+A new room is created automatically; copy the URL to invite others.
+
+---
+
+## 📦 Features
+
+| Feature | Description |
+|---------|-------------|
+| **Isolated rooms** | Each room has its own URL; conversations don’t mix. |
+| **Real‑time chat** | Messages are pushed instantly via STOMP over WebSocket. |
+| **Persistent history** | All messages are stored in an H2 database and can be fetched with the REST API. |
+| **Extensible** | Architecture is ready for avatar storage, moderation roles, file sharing, etc. |
+
+---
+
+## 🏗️ Architecture
+
+```
++----------------+          +-------------+          +----------------+
+|  Client (Web) | <------> | WebSocket  | <------> |  Spring Boot   |
++----------------+          +-------------+          +----------------+
+                                          |  
+                                          | REST
+                                          V
+                                  +------------------+
+                                  |  H2 Database     |
+                                  +------------------+
+```
+
+* **WebSocket** – STOMP messages are handled by `WebSocketConfig` and `MessageController`.  
+* **REST** – `ChatHistoryController` exposes `/api/rooms/{id}/history`.  
+* **Persistence** – `MessageRepository` writes to a single H2 table.
+
+---
+
+## 🎛️ Usage
+
+1. **Create a room** – visit the root URL (`/`).  
+2. **Join a room** – open the room URL (e.g., `/rooms/42`).  
+3. **Send messages** – type into the terminal interface; they appear instantly for all participants.  
+4. **Download history** – `GET /api/rooms/{id}/history` returns a JSON array of past messages.
+
+---
+
+## ⚙️ Environment
+
+| Requirement | Minimum |
+|-------------|---------|
+| **Java**   | 17+ |
+| **Maven**  | 3.6+ (or use the wrapper `./mvnw`) |
+
+---
+
+## 🧪 Development
+
+```bash
+# Run unit tests
+./mvnw test
+```
+
+The code follows standard Spring Boot conventions. Feel free to add integration tests or new features.
+
+---
+
+## 📄 License
+
+MIT © [Shubhyagami](https://github.com/shubhyagami) – see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🔖 Badges
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-17%2B-orange?logo=java)](https://openjdk.org/)
@@ -14,64 +96,11 @@ Built with Spring Boot, STOMP over WebSocket, and an H2 database for persisten
 
 ---
 
-## Features
+## 📅 Changelog
 
-- **Isolated chat rooms** – each URL contains its own room ID, keeping conversations separate.
-- **Real‑time messaging** – messages are pushed instantly over STOMP/WebSocket.
-- **Persistent history** – all messages are stored in an H2 database and can be retrieved via a REST endpoint.
-- **Future work** – avatar persistence, role‑based moderation, and file sharing.
-
----
-
-## Quick Start
-
-```bash
-# Clone and build
-git clone https://github.com/shubhyagami/chat-In-Terminal.git
-cd chat-In-Terminal
-./mvnw spring-boot:run
-```
-
-Open your browser at `http://localhost:8080`.  
-A new room is created automatically; the URL can be shared with others to join the same session.
+| Date | Change |
+|------|--------|
+| 2026‑08‑29 | Minor README update, added installation steps. |
+| 2026‑09‑01 | Refactored WebSocket configuration, improved API docs. |
 
 ---
-
-## Usage
-
-1. **Create a room** – simply visit the base URL.  
-2. **Join an existing room** – navigate to its URL (e.g., `http://localhost:8080/rooms/42`).  
-3. **Send messages** – type into the terminal UI; they appear instantly in all participants' UIs.  
-4. **Retrieve history** – issue a GET request to `/api/rooms/{id}/history` to fetch past messages.
-
----
-
-## Environment
-
-| Requirement | Minimum |
-|--------------|--------|
-| Java | 17+ |
-| Maven | 3.6+ (or use `./mvnw` wrapper) |
-
----
-
-## Development
-
-```bash
-# Run tests
-./mvnw test
-```
-
-Feel free to fork, open issues, or submit pull requests.
-
----
-
-## Changelog
-
-- **2026‑08‑29** – Updated README wording, added installation steps, refreshed badges.
-
----
-
-## License
-
-MIT © [Shubhyagami](https://github.com/shubhyagami) – see [LICENSE](LICENSE) for details.
