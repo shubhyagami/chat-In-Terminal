@@ -1,13 +1,13 @@
 # Chat‑In‑Terminal
 
-A lightweight terminal‑based chat that lets a group create a unique URL and converse in real time.  
-The backend is a Spring Boot application that uses STOMP over WebSocket and stores all messages in an H2 database.
+A lightweight terminal‑based chat application that lets a group create a unique URL and converse in real time.  
+The backend is a Spring Boot application that uses STOMP over WebSocket and stores all messages in an H2 database.
 
-![Build](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg) ![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk) ![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot) ![MIT License](https://img.shields.io/badge/License-MIT-yellow)
+![Build](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg) ![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk) ![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot) ![MIT License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
-## Quick start
+## Getting Started
 
 ```bash
 git clone https://github.com/shubhyagami/chat-In-Terminal.git
@@ -15,33 +15,32 @@ cd chat-In-Terminal
 ./mvnw spring-boot:run
 ```
 
-Open <http://localhost:8080> in your browser.  
-A new room is created automatically; copy the URL to invite others.
+Open <http://localhost:8080> in your browser. A new chat room is created automatically; copy the URL to invite others.
 
 ---
 
 ## Features
 
 | Feature | Benefit |
-|----------|---------|
+|---------|---------|
 | **Isolated rooms** | Each conversation has its own URL; messages never cross over. |
 | **Real‑time chat** | STOMP over WebSocket pushes new messages instantly. |
 | **Persistence & history** | All messages are stored in H2; retrieve them via a REST endpoint. |
-| **Extensible** | Built with a clean architecture – add avatars, moderation, file sharing, etc., with minimal changes. |
+| **Extensible** | Clean architecture – add avatars, moderation, file sharing, etc., with minimal effort. |
 
 ---
 
 ## Architecture
 
-```text
+```
 Client (Web) ↔ WebSocket (STOMP) ↔ Spring Boot
-                                   |
-                           REST /api/rooms/{id}/history
-                                   |
-                           H2 Database (single table)
+                               |
+                               ├─ REST /api/rooms/{id}/history
+                               |
+                               └─ H2 Database (single table)
 ```
 
-* **WebSocket** – configured in `WebSocketConfig`; message handling in `MessageController`.  
+* **WebSocket** – Configured in `WebSocketConfig`; message handling is provided by `MessageController`.  
 * **REST** – `ChatHistoryController` exposes `/api/rooms/{id}/history`.  
 * **Persistence** – `MessageRepository` writes every message to a single H2 table.
 
@@ -49,17 +48,17 @@ Client (Web) ↔ WebSocket (STOMP) ↔ Spring Boot
 
 ## Usage
 
-1. **Create a room** – Navigate to the root URL (`/`).  
-2. **Share the URL** – The URL contains the room ID (e.g., `/rooms/42`).  
-3. **Join a room** – Open the room URL in another browser or terminal.  
-4. **Chat** – Type messages in the terminal interface; they appear instantly for all participants.  
+1. **Create a room** – navigate to the root URL (`/`).  
+2. **Share the URL** – the room ID is part of the path (e.g., `/rooms/42`).  
+3. **Join a room** – open the room URL in another browser or terminal.  
+4. **Chat** – type messages in the terminal interface; they appear instantly for all participants.  
 5. **Download history** –  
 
 ```bash
 curl http://localhost:8080/api/rooms/42/history
 ```
 
-The response is a JSON array of all past messages for that room.
+The response is a JSON array containing all past messages for that room.
 
 ---
 
@@ -70,7 +69,7 @@ The response is a JSON array of all past messages for that room.
 ./mvnw test
 ```
 
-The project follows standard Spring Boot conventions. Pull requests are always welcome—feel free to add integration tests, new endpoints, or UI improvements.
+The project follows standard Spring Boot conventions. Pull requests are welcome—feel free to add integration tests, new endpoints, or UI improvements.
 
 ---
 
@@ -98,3 +97,5 @@ MIT © [Shubhyagami](https://github.com/shubhyagami). See the [LICENSE](LICENSE)
 | 2026‑09‑04 | Updated README, added badges, cleaned up sections. |
 | 2026‑09‑01 | Refactored WebSocket configuration, improved API documentation. |
 | 2026‑08‑29 | Minor README update, added installation steps. |
+
+---
