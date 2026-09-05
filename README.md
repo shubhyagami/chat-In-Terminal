@@ -1,14 +1,15 @@
 # Chat‑In‑Terminal
 
-A lightweight chat application that runs in your terminal.  
-The backend is a Spring Boot 3.x service that communicates over STOMP over WebSocket and persists every message in an embedded H2 database.
+A lightweight terminal‑based chat client backed by a Spring Boot 3.x service that uses STOMP over WebSocket and stores every message in an embedded H2 database.
 
-![Build](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg) ![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk) ![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot) ![MIT License](https://img.shields.io/badge/License-MIT-yellow)
+![Build](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg)
+![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)
+![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)
+![MIT License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
 ## Table of contents
-
 - [Getting started](#getting-started)
 - [Features](#features)
 - [Architecture](#architecture)
@@ -29,7 +30,7 @@ cd chat-In-Terminal
 ./mvnw spring-boot:run
 ```
 
-Open <http://localhost:8080> in your browser. A fresh chat room is created automatically; copy the URL to add participants.
+Open <http://localhost:8080> in a browser. A fresh chat room is created automatically; simply copy the URL to add participants. The same URL works from any terminal client.
 
 ---
 
@@ -37,74 +38,75 @@ Open <http://localhost:8080> in your browser. A fresh chat room is created autom
 
 | Feature | Why it matters |
 |---------|----------------|
-| **Dedicated rooms** | Each conversation has its own URL; messages are isolated. |
-| **Real‑time chat** | STOMP over WebSocket pushes new messages instantly. |
-| **Persistent history** | All messages are stored in H2; retrieve them via a REST endpoint. |
-| **Extensible** | Clean codebase – add avatars, moderation, file sharing, etc., with minimal effort. |
+| **Dedicated rooms** | Conversations are isolated; each has its own URL. |
+| **Real‑time messaging** | STOMP over WebSocket guarantees instant delivery. |
+| **Persistent history** | Messages are stored in H2 and can be requested via a REST endpoint. |
+| **Extensible design** | Clean code and clear API make adding avatars, moderation, or file sharing straightforward. |
 
 ---
 
 ## Architecture
 
 ```
-Client (Web) ──► WebSocket (STOMP) ──► Spring Boot
-                                   │
-                                   ├─ REST /api/rooms/{id}/history
-                                   └─ H2 database (single table)
+Client (Web or terminal) ──► WebSocket (STOMP) ──► Spring Boot
+                                │
+                                ├─ REST /api/rooms/{id}/history
+                                └─ H2 database (single table)
+
 ```
 
-* **WebSocket** – configured in `WebSocketConfig`; message routing handled by `MessageController`.  
-* **REST** – `ChatHistoryController` exposes `/api/rooms/{id}/history`.  
-* **Persistence** – `MessageRepository` writes every message to a single H2 table.
+- **WebSocket** – configured in `WebSocketConfig`; routing handled by `MessageController`.  
+- **REST** – `ChatHistoryController` exposes `/api/rooms/{id}/history`.  
+- **Persistence** – `MessageRepository` writes each message to one H2 table.
 
 ---
 
 ## Usage
 
-1. **Create a room** – go to the root URL (`/`).  
-2. **Share the URL** – the room ID is part of the path (e.g., `/rooms/42`).  
-3. **Join a room** – open the room URL in another browser or terminal.  
-4. **Chat** – type messages in the terminal interface; they appear immediately for all participants.  
-5. **Download history** –  
+1. **Create a room** – navigate to the root URL (`/`).  
+2. **Share the URL** – the room ID appears in the path (e.g., `/rooms/42`).  
+3. **Join a room** – open the same URL in another browser or terminal.  
+4. **Chat** – type messages and hit *Enter*; they appear instantly for all participants.  
+5. **Download history** – retrieve a room’s history as JSON:
 
-```bash
-curl http://localhost:8080/api/rooms/42/history
-```
+   ```bash
+   curl http://localhost:8080/api/rooms/42/history
+   ```
 
-The response is a JSON array of all past messages for that room.
+   Example response:
+
+   ```json
+   [
+     {
+       "timestamp": "2026-09-05T12:34:56.789Z",
+       "author": "alice",
+       "content": "Hello, world!"
+     }
+   ]
+   ```
 
 ---
 
 ## API
 
 | Endpoint | Method | Description |
-|----------|-------|-------------|
-| `/api/rooms/{id}/history` | `GET` | Return an array of all messages for the specified room. |
+|----------|--------|-------------|
+| `/api/rooms/{id}/history` | `GET` | Returns all messages for the specified room. |
 
-The response format:
-
-```json
-[
-  {
-    "timestamp": "2026-09-05T12:34:56.789Z",
-    "author": "alice",
-    "content": "Hello, world!"
-  },
-  …
-]
-```
+The response is a JSON array of message objects with `timestamp`, `author`, and `content` fields.
 
 ---
 
 ## Development & testing
 
-Run unit tests with:
+The project follows standard Spring Boot conventions.
 
 ```bash
+# Run unit tests
 ./mvnw test
 ```
 
-The project follows standard Spring Boot conventions. Pull requests adding integration tests, new endpoints, or UI improvements are welcome.
+Feel free to add integration tests, new endpoints, or UI improvements. Pull requests that improve test coverage or documentation are especially welcome.
 
 ---
 
@@ -115,7 +117,7 @@ The project follows standard Spring Boot conventions. Pull requests adding int
 3. Commit your changes and run tests.  
 4. Open a pull request against `main`.
 
-See the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
+Detailed guidelines are in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ---
 
