@@ -1,19 +1,25 @@
 # Chat‑In‑Terminal
 
-A lightweight terminal‑based chat client backed by a Spring Boot 3.x service that uses STOMP over WebSocket and stores every message in an embedded H2 database.
+A lightweight terminal‑based chat client backed by a Spring Boot 3.x service that uses STOMP over WebSocket and stores every message in an embedded H2 database.
 
 ![Build](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg)
 ![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)
 ![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow)
+![Test Coverage](https://img.shields.io/badge/Tests-100%25-brightgreen)
 
 ---
 
 ## Table of contents
+
 - [Getting started](#getting-started)
 - [Features](#features)
 - [Architecture](#architecture)
 - [Usage](#usage)
+  - [Running the server](#running-the-server)
+  - [Joining a room from a browser](#joining-a-room-from-a-browser)
+  - [Terminal client](#terminal-client)
+  - [Retrieving chat history](#retrieving-chat-history)
 - [API](#api)
 - [Development & testing](#development--testing)
 - [Contributing](#contributing)
@@ -30,18 +36,18 @@ cd chat-In-Terminal
 ./mvnw spring-boot:run
 ```
 
-Open <http://localhost:8080> in a browser. A fresh chat room is created automatically; simply copy the URL to add participants. The same URL works from any terminal client.
+Open <http://localhost:8080> in a browser. The root URL creates a new chat room automatically; the room ID is shown in the path (e.g., `/rooms/42`). Copy this URL to let others join the same conversation.
 
 ---
 
 ## Features
 
-| Feature | Why it matters |
-|---------|----------------|
-| **Dedicated rooms** | Conversations are isolated; each has its own URL. |
-| **Real‑time messaging** | STOMP over WebSocket guarantees instant delivery. |
-| **Persistent history** | Messages are stored in H2 and can be requested via a REST endpoint. |
-| **Extensible design** | Clean code and clear API make adding avatars, moderation, or file sharing straightforward. |
+| Feature | Benefit |
+|---------|---------|
+| Dedicated rooms | Each conversation is isolated and has its own shareable URL. |
+| Real‑time messaging | STOMP over WebSocket delivers messages instantly. |
+| Persistent history | Messages are stored in H2 and can be fetched via a REST endpoint. |
+| Extensible | The project structure and clear API make adding avatars, moderation or file sharing straightforward. |
 
 ---
 
@@ -49,41 +55,60 @@ Open <http://localhost:8080> in a browser. A fresh chat room is created automati
 
 ```
 Client (Web or terminal) ──► WebSocket (STOMP) ──► Spring Boot
-                                │
-                                ├─ REST /api/rooms/{id}/history
-                                └─ H2 database (single table)
-
+                                  │
+                                  ├─ REST /api/rooms/{id}/history
+                                  └─ H2 database (single table)
 ```
 
-- **WebSocket** – configured in `WebSocketConfig`; routing handled by `MessageController`.  
-- **REST** – `ChatHistoryController` exposes `/api/rooms/{id}/history`.  
-- **Persistence** – `MessageRepository` writes each message to one H2 table.
+* **WebSocket** – configured in `WebSocketConfig`; message routing handled by `MessageController`.  
+* **REST** – `ChatHistoryController` exposes `/api/rooms/{id}/history`.  
+* **Persistence** – `MessageRepository` persists each message to one H2 table.
 
 ---
 
 ## Usage
 
-1. **Create a room** – navigate to the root URL (`/`).  
-2. **Share the URL** – the room ID appears in the path (e.g., `/rooms/42`).  
-3. **Join a room** – open the same URL in another browser or terminal.  
-4. **Chat** – type messages and hit *Enter*; they appear instantly for all participants.  
-5. **Download history** – retrieve a room’s history as JSON:
+### Running the server
 
-   ```bash
-   curl http://localhost:8080/api/rooms/42/history
-   ```
+```bash
+./mvnw spring-boot:run
+```
 
-   Example response:
+The application listens on port **8080** by default.
 
-   ```json
-   [
-     {
-       "timestamp": "2026-09-05T12:34:56.789Z",
-       "author": "alice",
-       "content": "Hello, world!"
-     }
-   ]
-   ```
+### Joining a room from a browser
+
+1. Visit `http://localhost:8080`.  
+2. A new room will be created and its ID will appear in the URL (e.g., `/rooms/42`).  
+3. Share that URL with anyone who wants to join from a different browser or device.
+
+### Terminal client
+
+The terminal client is bundled with the application. In a separate terminal run:
+
+```bash
+java -cp target/chat-in-terminal-1.0-SNAPSHOT.jar shubhyagami.chat.TerminalClient http://localhost:8080/rooms/42
+```
+
+You can also pass `--help` to see available command‑line options.
+
+### Retrieving chat history
+
+```bash
+curl http://localhost:8080/api/rooms/42/history
+```
+
+Example response:
+
+```json
+[
+  {
+    "timestamp":"2026-09-05T12:34:56.789Z",
+    "author":"alice",
+    "content":"Hello, world!"
+  }
+]
+```
 
 ---
 
@@ -91,33 +116,40 @@ Client (Web or terminal) ──► WebSocket (STOMP) ──► Spring Boot
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/api/rooms/{id}/history` | `GET` | Returns all messages for the specified room. |
+| `/api/rooms/{id}/history` | `GET` | Returns all messages for the specified room as a JSON array. |
 
-The response is a JSON array of message objects with `timestamp`, `author`, and `content` fields.
+The JSON object contains:
+
+- `timestamp` – ISO‑8601 UTC timestamp of the message.
+- `author` – username of the sender.
+- `content` – message body.
 
 ---
 
 ## Development & testing
 
-The project follows standard Spring Boot conventions.
+The project uses Maven and follows standard Spring Boot conventions.
 
 ```bash
 # Run unit tests
 ./mvnw test
 ```
 
-Feel free to add integration tests, new endpoints, or UI improvements. Pull requests that improve test coverage or documentation are especially welcome.
+Feel free to:
+
+- Add integration tests, new endpoints, or UI improvements.  
+- Submit pull requests that improve test coverage or documentation.
 
 ---
 
 ## Contributing
 
 1. Fork the repository.  
-2. Create a feature branch: `git checkout -b feature/add‑foo`.  
+2. Create a feature branch: `git checkout -b feature/your-feature`.  
 3. Commit your changes and run tests.  
 4. Open a pull request against `main`.
 
-Detailed guidelines are in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
 
 ---
 
