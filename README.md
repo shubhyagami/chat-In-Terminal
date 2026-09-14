@@ -1,7 +1,7 @@
 # Chat‑In‑Terminal
 
-A lightweight, terminal‑based chat client that talks to a Spring Boot 3.x service using STOMP/WebSocket.  
-Messages are persisted in an embedded H2 database and are available through a simple REST API.
+*A lightweight terminal client that talks to a Spring Boot 3.x back‑end over STOMP/WebSocket.  
+All messages are persisted in an embedded H2 database and can be accessed via a simple REST API.*
 
 ![Build Status](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg)  
 ![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)  
@@ -10,13 +10,13 @@ Messages are persisted in an embedded H2 database and are available through a si
 ![Test Coverage 100%](https://img.shields.io/badge/Tests-100%25-brightgreen)
 
 > **Quick start**  
-> ```bash  
-> # Build the server  
-> ./mvnw clean package  
-> # Run the server  
-> java -jar target/chat-in-terminal-*.jar  
-> # Run the terminal client for a room at http://localhost:8080/rooms/1  
-> java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/1  
+> ```bash
+> # Build the application (both server and client)
+> ./mvnw clean package
+> # Start the server (listens on port 8080 by default)
+> java -jar target/chat-in-terminal-*.jar
+> # Connect the terminal client to a room
+> java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/1
 > ```
 
 ---
@@ -30,9 +30,8 @@ Messages are persisted in an embedded H2 database and are available through a si
   - [Prerequisites](#prerequisites)
   - [Build the project](#build-the-project)
   - [Run the server](#run-the-server)
-  - [Use in a browser](#use-in-a-browser)
   - [Use the terminal client](#use-the-terminal-client)
-  - [Retrieve chat history](#retrieve-chat-history)
+  - [View chat history](#view-chat-history)
 - [API reference](#api-reference)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -44,34 +43,37 @@ Messages are persisted in an embedded H2 database and are available through a si
 ## Overview
 
 The service exposes a single WebSocket endpoint (`/app/chat`) that clients subscribe to via STOMP.  
-All chat messages are stored in an H2 database (`message` table) and can be retrieved through a REST endpoint.
+All chat messages are stored in a single `message` table in an embedded H2 database and can be queried later through a REST endpoint.
 
 ---
 
 ## Features
 
-- **Dedicated rooms** – Each room has its own URL and isolated conversation.
-- **Real‑time messaging** – STOMP over WebSocket guarantees instant delivery.
-- **Persistent history** – Every message is stored and can be queried later.
-- **Extensible** – The modular design makes it easy to add avatars, moderation, file sharing, etc.
+| Feature | Description |
+|---------|-------------|
+| **Dedicated rooms** | Each room has its own URL and isolated conversation. |
+| **Real‑time messaging** | STOMP over WebSocket delivers messages instantly. |
+| **Persistence** | Every message is saved to the database and can be queried. |
+| **Extensible** | The modular design makes it easy to add avatars, moderation, file sharing, etc. |
 
 ---
 
 ## Architecture
 
 ```
-Client (Web or terminal) ──► STOMP WebSocket ──► Spring Boot
-                                   │
-                                   ├─ REST /api/rooms/{id}/history
-                                   └─ H2 (single “message” table)
+Client (web or terminal)
+      ──► STOMP WebSocket ──► Spring Boot
+          |                       |
+          ├─ REST /api/rooms/{id}/history
+          └─ H2 (single “message” table)
 ```
 
-| Component           | Responsibility                         |
-|---------------------|----------------------------------------|
-| `WebSocketConfig`   | Configures the STOMP endpoint          |
-| `MessageController` | Handles chat message routing          |
-| `ChatHistoryController` | Serves the history endpoint           |
-| `MessageRepository` | Persists to H2                         |
+| Component             | Responsibility |
+|-----------------------|-----------------|
+| `WebSocketConfig`      | Configures the STOMP endpoint |
+| `MessageController`    | Routes chat messages |
+| `ChatHistoryController` | Exposes the history API |
+| `MessageRepository`   | Persists to H2 |
 
 ---
 
@@ -90,7 +92,7 @@ cd chat-In-Terminal
 ./mvnw clean package
 ```
 
-The executable JAR is in `target/chat-in-terminal-*.jar`.
+The JARs for both the server and the terminal client are placed in `target/`.
 
 ### Run the server
 
@@ -100,22 +102,16 @@ java -jar target/chat-in-terminal-*.jar
 
 The application listens on **port 8080** by default.
 
-### Use in a browser
-
-1. Open <http://localhost:8080>.  
-2. A new room is created automatically; its ID appears in the URL (`/rooms/42`).  
-3. Share that URL – anyone who visits it will join the same conversation.
-
 ### Use the terminal client
 
 ```bash
 java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/42
 ```
 
-The client accepts the room URL as its first argument.  
-Run `java -jar ... --help` for command‑line options.
+The client will connect to the specified room.  
+Run `java -jar target/chat-in-terminal-*.jar --help` to see available options.
 
-### Retrieve chat history
+### View chat history
 
 ```bash
 curl http://localhost:8080/api/rooms/42/history
@@ -137,35 +133,38 @@ Typical response:
 
 ## API reference
 
-| Endpoint                      | Method | Description                                 |
-|-------------------------------|--------|---------------------------------------------|
-| `/api/rooms/{id}/history`    | GET    | Returns all messages for the specified room |
+| Endpoint                | Method | Description                     |
+|-------------------------|--------|---------------------------------|
+| `/api/rooms/{id}/history` | GET    | Returns all messages for room `id` |
 
-The JSON objects contain:
+Response fields:
 
-- `timestamp` – ISO‑8601 UTC timestamp
-- `author`    – sender’s username
-- `content`   – message body
+| Field     | Type   | Description            |
+|-----------|--------|---------------------------|
+| `timestamp` | string | ISO‑8601 UTC timestamp |
+| `author`    | string | Sender’s username        |
+| `content`   | string | Message body            |
 
 ---
 
 ## Development
 
-Run unit tests with:
+Run the unit tests with:
 
 ```bash
 ./mvnw test
 ```
 
-Feel free to add new tests, endpoints, or UI improvements.
+Feel free to add new tests, endpoints, or improve the terminal UI.  
+The project uses Maven so the usual lifecycle applies (`clean`, `install`, `package`, ...).
 
 ---
 
 ## Contributing
 
-1. Fork the repo.  
+1. Fork the repository.  
 2. Create a feature branch: `git checkout -b feature/your-feature`.  
-3. Commit changes and run all tests.  
+3. Commit changes and make sure all tests pass.  
 4. Open a pull request against `main`.
 
 See the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
@@ -183,8 +182,8 @@ See the [LICENSE](LICENSE) file.
 
 | Date       | Change |
 |------------|--------|
-| 2026‑09‑04 | Updated README, added badges, reorganised sections |
-| 2026‑09‑01 | Refactored WebSocket configuration, added API docs |
-| 2026‑08‑29 | Minor README updates, added installation steps |
+| 2026-09-04 | Updated README, added badges, reorganised sections |
+| 2026-09-01 | Refactored WebSocket configuration, added API docs |
+| 2026-08-29 | Minor README updates, added installation steps |
 
 ---
