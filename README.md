@@ -1,25 +1,25 @@
 # Chat‑In‑Terminal
 
-*A lightweight terminal client that talks to a Spring Boot 3.x back‑end over STOMP/WebSocket.  
-All messages are persisted in an embedded H2 database and can be accessed via a simple REST API.*
+*A lightweight terminal client that talks to a Spring Boot 3.x back‑end over STOMP/WebSocket.  
+All chat messages are stored in an embedded H2 database and can be retrieved via a REST API.*
 
-![Build Status](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg)  
-![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)  
-![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)  
-![MIT](https://img.shields.io/badge/License-MIT-yellow)  
+![Build Status](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg)
+![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)
+![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)
+![MIT](https://img.shields.io/badge/License-MIT-yellow)
 ![Test Coverage 100%](https://img.shields.io/badge/Tests-100%25-brightgreen)
 
 > **Quick start**  
 > ```bash
-> # Build the application (both server and client)
+> # Build the project
 > ./mvnw clean package
-> # Start the server (listens on port 8080 by default)
+> # Start the server (HTTP & WebSocket on port 8080)
 > java -jar target/chat-in-terminal-*.jar
 > # Connect the terminal client to a room
 > java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/1
 > ```
 
----
+-------------------------------------------------------------------
 
 ## Table of contents
 
@@ -38,25 +38,25 @@ All messages are persisted in an embedded H2 database and can be accessed via a 
 - [License](#license)
 - [Changelog](#changelog)
 
----
+-------------------------------------------------------------------
 
 ## Overview
 
-The service exposes a single WebSocket endpoint (`/app/chat`) that clients subscribe to via STOMP.  
-All chat messages are stored in a single `message` table in an embedded H2 database and can be queried later through a REST endpoint.
+The application serves a single WebSocket endpoint (`/app/chat`) that clients subscribe to using STOMP.  
+Messages are appended to a single `message` table in an embedded H2 database and can be queried through the `/api/rooms/{id}/history` REST endpoint.
 
----
+-------------------------------------------------------------------
 
 ## Features
 
 | Feature | Description |
 |---------|-------------|
-| **Dedicated rooms** | Each room has its own URL and isolated conversation. |
-| **Real‑time messaging** | STOMP over WebSocket delivers messages instantly. |
-| **Persistence** | Every message is saved to the database and can be queried. |
-| **Extensible** | The modular design makes it easy to add avatars, moderation, file sharing, etc. |
+| Dedicated rooms | Each room has a unique URL and holds an isolated conversation. |
+| Real‑time messaging | STOMP over WebSocket delivers messages instantly. |
+| Persistence | All messages are stored and time‑stamped in the database. |
+| Extensible | The modular design allows easy addition of avatars, moderation, file sharing, etc. |
 
----
+-------------------------------------------------------------------
 
 ## Architecture
 
@@ -68,14 +68,14 @@ Client (web or terminal)
           └─ H2 (single “message” table)
 ```
 
-| Component             | Responsibility |
-|-----------------------|-----------------|
+| Component               | Responsibility |
+|-------------------------|-----------------|
 | `WebSocketConfig`      | Configures the STOMP endpoint |
-| `MessageController`    | Routes chat messages |
-| `ChatHistoryController` | Exposes the history API |
+| `MessageController`     | Routes chat messages |
+| `ChatHistoryController`| Exposes the history API |
 | `MessageRepository`   | Persists to H2 |
 
----
+-------------------------------------------------------------------
 
 ## Getting started
 
@@ -92,7 +92,7 @@ cd chat-In-Terminal
 ./mvnw clean package
 ```
 
-The JARs for both the server and the terminal client are placed in `target/`.
+Both the server and the terminal client are packaged into a single JAR located in `target/`.
 
 ### Run the server
 
@@ -117,7 +117,7 @@ Run `java -jar target/chat-in-terminal-*.jar --help` to see available options.
 curl http://localhost:8080/api/rooms/42/history
 ```
 
-Typical response:
+Sample response:
 
 ```json
 [
@@ -129,23 +129,23 @@ Typical response:
 ]
 ```
 
----
+-------------------------------------------------------------------
 
 ## API reference
 
-| Endpoint                | Method | Description                     |
-|-------------------------|--------|---------------------------------|
-| `/api/rooms/{id}/history` | GET    | Returns all messages for room `id` |
+| Endpoint                  | Method | Description                         |
+|---------------------------|--------|-------------------------------------|
+| `/api/rooms/{id}/history` | GET    | Returns all messages for the room `id` |
 
 Response fields:
 
 | Field     | Type   | Description            |
-|-----------|--------|---------------------------|
+|-----------|--------|------------------------|
 | `timestamp` | string | ISO‑8601 UTC timestamp |
-| `author`    | string | Sender’s username        |
+| `author`    | string | Sender’s username       |
 | `content`   | string | Message body            |
 
----
+-------------------------------------------------------------------
 
 ## Development
 
@@ -156,9 +156,9 @@ Run the unit tests with:
 ```
 
 Feel free to add new tests, endpoints, or improve the terminal UI.  
-The project uses Maven so the usual lifecycle applies (`clean`, `install`, `package`, ...).
+The project uses the standard Maven lifecycle: `clean`, `install`, `package`, etc.
 
----
+-------------------------------------------------------------------
 
 ## Contributing
 
@@ -169,14 +169,14 @@ The project uses Maven so the usual lifecycle applies (`clean`, `install`, `pack
 
 See the [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed guidelines.
 
----
+-------------------------------------------------------------------
 
 ## License
 
 MIT © [Shubhyagami](https://github.com/shubhyagami).  
 See the [LICENSE](LICENSE) file.
 
----
+-------------------------------------------------------------------
 
 ## Changelog
 
@@ -185,5 +185,3 @@ See the [LICENSE](LICENSE) file.
 | 2026-09-04 | Updated README, added badges, reorganised sections |
 | 2026-09-01 | Refactored WebSocket configuration, added API docs |
 | 2026-08-29 | Minor README updates, added installation steps |
-
----
