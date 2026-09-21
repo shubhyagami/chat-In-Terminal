@@ -1,61 +1,73 @@
-[K[2m  [2mmodel openai/gpt-oss-20b failed, trying next...[0m[0m
-[K[2m  [2mmodel openai/gpt-oss-120b failed, trying next...[0m[0m
-# Chat-In-Terminal
+# Chat‑In‑Terminal
 
-Chat-In-Terminal is a lightweight command-line chat client and server powered by Spring Boot 3.x. It leverages STOMP over WebSockets for real-time communication and uses an embedded H2 database to persist chat history, which can be accessed via a REST API.
+> A minimal, self‑contained Spring Boot 3.x application that can act as both a WebSocket chat server and a terminal‑based client.  
+> It uses STOMP over WebSocket for real‑time messaging, stores chat history in an embedded H2 database, and exposes a small REST API for retrieving past conversations.
+
+## Badges
 
 ![Build Status](https://github.com/shubhyagami/chat-In-Terminal/actions/workflows/maven.yml/badge.svg)
 ![Java 17+](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk)
 ![Spring Boot 3.x](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)
-![MIT](https://img.shields.io/badge/License-MIT-yellow)
+![MIT License](https://img.shields.io/badge/License-MIT-yellow)
 ![Test Coverage](https://img.shields.io/badge/Tests-100%25-brightgreen)
+
+---
 
 ## Quick Start
 
 ```bash
-# 1. Build the project
+# 1️⃣ Build the project
 ./mvnw clean package
 
-# 2. Start the server
+# 2️⃣ Run the server
 java -jar target/chat-in-terminal-*.jar
-# Server runs at http://localhost:8080 (REST) and ws://localhost:8080/ws (WebSocket)
+# Default REST host: http://localhost:8080
+# WebSocket endpoint: ws://localhost:8080/ws
 
-# 3. Connect the terminal client to a room (in a new terminal tab)
+# 3️⃣ Open a new terminal and join a room
 java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/1
-# Replace '1' with any room ID. Use --help for available flags.
+# Replace "1" with any room ID; use --help for more options
 ```
 
-The client reads from `stdin`. Simply type your message and press **Enter** to send.
+The client reads from `stdin`. Type a message and press **Enter** to send. Press `Ctrl+C` to quit.
+
+---
 
 ## Features
 
-- **Room Isolation**: Independent chat rooms identified by unique IDs.
-- **Real-time Messaging**: Low-latency delivery via STOMP over WebSockets.
-- **Persistent History**: Messages are stored with timestamps in an H2 database.
-- **History API**: Retrieve past room conversations via a simple REST endpoint.
-- **Unified Distribution**: Single JAR file handles both server and client roles.
+| Feature | Description |
+|---------|-------------|
+| **Room isolation** | Each chat room is identified by a numeric ID; messages are separated per room. |
+| **Real‑time** | STOMP over WebSocket ensures low‑latency delivery. |
+| **Persistence** | Messages are stored in an embedded H2 database with timestamps. |
+| **History API** | `GET /api/rooms/{id}/history` returns JSON of all past messages for a room. |
+| **Unified JAR** | A single executable JAR can act as server or terminal client. |
+| **No external dependencies** | All components are included; no separate database or message broker installation required. |
+
+---
 
 ## Architecture
 
-`Client (Terminal) → STOMP WebSocket → Spring Boot → H2 Database`
+```
+Terminal (STOMP) → Spring Boot WebSocket → H2 Database
+                                 ↘︎ REST API ↙
+```
 
-### Component Breakdown
+- **`WebSocketConfig`** – registers `/ws` and a simple message broker.  
+- **`MessageController`** – receives STOMP messages, persists them, and broadcasts to the room.  
+- **`ChatHistoryController`** – serves the history endpoint.  
+- **`MessageRepository`** – Spring Data JPA repository for the `message` table.  
 
-| Component | Responsibility |
-|-----------|----------------|
-| `WebSocketConfig` | Configures the `/ws` endpoint and message broker. |
-| `MessageController` | Processes inbound messages and broadcasts them to the broker. |
-| `ChatHistoryController` | Exposes the REST API for room history retrieval. |
-| `MessageRepository` | Handles database persistence for the `message` table. |
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- JDK 17 or newer
-- Maven 3.9+
+- **JDK 17+** (OpenJDK or Oracle)
+- **Maven 3.9+** (the project bundles a wrapper)
 
-### Installation
+### Clone & Build
 
 ```bash
 git clone https://github.com/shubhyagami/chat-In-Terminal.git
@@ -65,34 +77,40 @@ cd chat-In-Terminal
 
 ### Running the Server
 
-Start the server using the generated JAR:
 ```bash
 java -jar target/chat-in-terminal-*.jar
 ```
-The server defaults to port `8080`. To change the port, use: `-Dserver.port=9090`.
 
-### Joining a Room
+The server listens on port **8080** by default. Change the port:
 
-Connect using the client mode by passing the room URL:
+```bash
+java -jar target/chat-in-terminal-*.jar -Dserver.port=9090
+```
+
+### Joining a Room (Client Mode)
+
 ```bash
 java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/42
 ```
-The client will automatically connect to room `42`, display current active messages, and wait for user input.
 
-### Fetching History via CLI
+The client automatically connects to room **42**, shows any existing messages, and waits for user input.
 
-You can retrieve the JSON history of a room using `curl`:
+#### Helpful Flags
+
+```bash
+java -jar target/chat-in-terminal-*.jar --help
+```
+
+Displays available options such as custom endpoints, logging levels, or verbosity.
+
+### Retrieving History with `curl`
+
 ```bash
 curl http://localhost:8080/api/rooms/42/history
 ```
 
-## API Reference
+Response example:
 
-### GET `/api/rooms/{id}/history`
-
-Returns a JSON array of all messages associated with the specified room ID.
-
-**Response Example:**
 ```json
 [
   {
@@ -103,51 +121,79 @@ Returns a JSON array of all messages associated with the specified room ID.
 ]
 ```
 
-**Field Definitions:**
-- `timestamp`: ISO-8601 UTC string.
-- `author`: The username of the sender.
-- `content`: The message body.
+---
+
+## API Reference
+
+### `GET /api/rooms/{id}/history`
+
+> Returns all messages in a room as a JSON array.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `timestamp` | String (ISO‑8601 UTC) | Message creation time. |
+| `author` | String | Username of the sender. |
+| `content` | String | The message body. |
+
+---
 
 ## Development
 
-### Testing
-Run the full test suite with Maven:
+### Run Tests
+
 ```bash
 ./mvnw test
 ```
-The project maintains 100% test coverage to ensure stability across updates.
 
-### Project Structure
+The project maintains **100 %** test coverage, verified by the CI pipeline.
+
+### Project Layout
+
 ```
 src/
  ├─ main/
  │   ├─ java/com/example/chat/
- │   │   ├─ config/        # WebSocket & App configuration
- │   │   ├─ controller/     # REST and STOMP handlers
- │   │   └─ repository/     # Database access layer
- │   └─ resources/        # application.yml
- └─ test/                 # JUnit and Integration tests
+ │   │   ├─ config/        # WebSocket & application configuration
+ │   │   ├─ controller/    # REST and STOMP handlers
+ │   │   └─ repository/   # Database access
+ │   └─ resources/        # application.yml and schema
+ └─ test/
+     └─ java/...          # JUnit & integration tests
 ```
+
+### Running Locally
+
+You can run unit tests or the application directly from IntelliJ, VS Code, or any IDE that supports Maven.
+
+### Adding a Feature
+
+1. Create a new feature branch: `git checkout -b feature/your-feature`  
+2. Write your code and tests.  
+3. Run `./mvnw test` to ensure everything passes.  
+4. Open a Pull Request against `main`.
+
+---
 
 ## Contributing
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/your-feature`.
-3. Ensure all tests pass: `./mvnw test`.
-4. Submit a Pull Request to the `main` branch.
+All contributions are welcome! Please read the guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting any PRs.
 
-For detailed guidelines, please refer to `CONTRIBUTING.md`.
+---
 
 ## License
 
-This project is distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Distributed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
 
 ## Changelog
 
 | Date | Change |
 |------|--------|
-| 2026-09-19 | Refined README for better clarity and organization. |
-| 2026-09-17 | Polished documentation and added project badges. |
-| 2026-09-04 | Added API documentation and expanded architecture details. |
-| 2026-09-01 | Updated WebSocket configuration and added coverage tracking. |
-| 2026-08-29 | Initial repository creation. |
+| 2026‑09‑19 | Clarified README structure and added badges. |
+| 2026‑09‑17 | Updated documentation and introduced code‑coverage badge. |
+| 2026‑09‑04 | Added REST API docs and expanded architecture section. |
+| 2026‑09‑01 | Refined WebSocket config and added tests. |
+| 2026‑08‑29 | Initial repository creation. |
+
+---
