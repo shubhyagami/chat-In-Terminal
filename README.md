@@ -1,7 +1,11 @@
 # Chat‑In‑Terminal
 
-> A minimal, self‑contained Spring Boot 3.x application that can act as both a WebSocket chat server and a terminal‑based client.  
-> It uses STOMP over WebSocket for real‑time messaging, stores chat history in an embedded H2 database, and exposes a small REST API for retrieving past conversations.
+*A lightweight Spring Boot 3.x application that can act as both a WebSocket chat server and a terminal‑based client.*
+
+This project ships as a single executable JAR.  
+Run it in “server mode” to start the chat service, or pass a room URL to run it in “client mode” and join a chat room directly from your terminal.
+
+---
 
 ## Badges
 
@@ -19,30 +23,27 @@
 # 1️⃣ Build the project
 ./mvnw clean package
 
-# 2️⃣ Run the server
+# 2️⃣ Run the server (default port 8080)
 java -jar target/chat-in-terminal-*.jar
-# Default REST host: http://localhost:8080
 # WebSocket endpoint: ws://localhost:8080/ws
+# REST API: http://localhost:8080
 
 # 3️⃣ Open a new terminal and join a room
 java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/1
-# Replace "1" with any room ID; use --help for more options
 ```
 
-The client reads from `stdin`. Type a message and press **Enter** to send. Press `Ctrl+C` to quit.
+The client reads from `stdin`. Type a message and press **Enter** to send. Exit with `Ctrl+C`.
 
 ---
 
 ## Features
 
-| Feature | Description |
-|---------|-------------|
-| **Room isolation** | Each chat room is identified by a numeric ID; messages are separated per room. |
-| **Real‑time** | STOMP over WebSocket ensures low‑latency delivery. |
-| **Persistence** | Messages are stored in an embedded H2 database with timestamps. |
-| **History API** | `GET /api/rooms/{id}/history` returns JSON of all past messages for a room. |
-| **Unified JAR** | A single executable JAR can act as server or terminal client. |
-| **No external dependencies** | All components are included; no separate database or message broker installation required. |
+- **Room isolation** – Numeric room IDs keep conversations separate.  
+- **Real‑time delivery** – STOMP over WebSocket gives low‑latency messaging.  
+- **Persistence** – All messages are stored in an embedded H2 database with timestamps.  
+- **History API** – `GET /api/rooms/{id}/history` returns JSON of past messages.  
+- **Single executable** – One JAR can act as server or terminal client.  
+- **Zero external services** – No separate DB or broker required.
 
 ---
 
@@ -50,13 +51,13 @@ The client reads from `stdin`. Type a message and press **Enter** to send. Press
 
 ```
 Terminal (STOMP) → Spring Boot WebSocket → H2 Database
-                                 ↘︎ REST API ↙
+                                     ↘︎ REST API ↙
 ```
 
 - **`WebSocketConfig`** – registers `/ws` and a simple message broker.  
-- **`MessageController`** – receives STOMP messages, persists them, and broadcasts to the room.  
-- **`ChatHistoryController`** – serves the history endpoint.  
-- **`MessageRepository`** – Spring Data JPA repository for the `message` table.  
+- **`MessageController`** – handles STOMP messages, persists them, and broadcasts to the room.  
+- **`ChatHistoryController`** – exposes the history endpoint.  
+- **`MessageRepository`** – Spring Data JPA repository for the `message` table.
 
 ---
 
@@ -65,9 +66,9 @@ Terminal (STOMP) → Spring Boot WebSocket → H2 Database
 ### Prerequisites
 
 - **JDK 17+** (OpenJDK or Oracle)
-- **Maven 3.9+** (the project bundles a wrapper)
+- **Maven 3.9+** (the wrapper is included)
 
-### Clone & Build
+### Clone and Build
 
 ```bash
 git clone https://github.com/shubhyagami/chat-In-Terminal.git
@@ -75,41 +76,45 @@ cd chat-In-Terminal
 ./mvnw clean package
 ```
 
-### Running the Server
+### Run the Server
 
 ```bash
 java -jar target/chat-in-terminal-*.jar
 ```
 
-The server listens on port **8080** by default. Change the port:
+Change the port if needed:
 
 ```bash
 java -jar target/chat-in-terminal-*.jar -Dserver.port=9090
 ```
 
-### Joining a Room (Client Mode)
+### Join a Room (Client Mode)
 
 ```bash
 java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/42
 ```
 
-The client automatically connects to room **42**, shows any existing messages, and waits for user input.
+The client automatically:
 
-#### Helpful Flags
+1. Connects to room **42**.  
+2. Displays any existing messages.  
+3. Waits for user input.
 
-```bash
+#### Common Flags
+
+```
 java -jar target/chat-in-terminal-*.jar --help
 ```
 
-Displays available options such as custom endpoints, logging levels, or verbosity.
+Shows options such as custom endpoints, logging levels, and verbosity.
 
-### Retrieving History with `curl`
+### Retrieve History with `curl`
 
 ```bash
 curl http://localhost:8080/api/rooms/42/history
 ```
 
-Response example:
+Example response:
 
 ```json
 [
@@ -127,13 +132,13 @@ Response example:
 
 ### `GET /api/rooms/{id}/history`
 
-> Returns all messages in a room as a JSON array.
+Returns all messages in the specified room as a JSON array.
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `timestamp` | String (ISO‑8601 UTC) | Message creation time. |
-| `author` | String | Username of the sender. |
-| `content` | String | The message body. |
+| Field     | Type                    | Description                        |
+|-----------|------------------------|------------------------------------|
+| `timestamp` | String (ISO‑8601 UTC)  | Message creation time.            |
+| `author`   | String                | Username of the sender.            |
+| `content`  | String                | The message body.                  |
 
 ---
 
@@ -145,7 +150,7 @@ Response example:
 ./mvnw test
 ```
 
-The project maintains **100 %** test coverage, verified by the CI pipeline.
+The CI pipeline verifies **100 %** coverage.
 
 ### Project Layout
 
@@ -155,28 +160,28 @@ src/
  │   ├─ java/com/example/chat/
  │   │   ├─ config/        # WebSocket & application configuration
  │   │   ├─ controller/    # REST and STOMP handlers
- │   │   └─ repository/   # Database access
+ │   │   └─ repository/    # Database access
  │   └─ resources/        # application.yml and schema
  └─ test/
      └─ java/...          # JUnit & integration tests
 ```
 
-### Running Locally
+### IDEs
 
-You can run unit tests or the application directly from IntelliJ, VS Code, or any IDE that supports Maven.
+The project is configured for Maven. Open it in IntelliJ, VS Code, or any IDE that supports Maven to run the application or tests directly.
 
 ### Adding a Feature
 
-1. Create a new feature branch: `git checkout -b feature/your-feature`  
-2. Write your code and tests.  
-3. Run `./mvnw test` to ensure everything passes.  
+1. Create a feature branch: `git checkout -b feature/your-feature`  
+2. Write code and tests.  
+3. Run `./mvnw test` to confirm all tests pass.  
 4. Open a Pull Request against `main`.
 
 ---
 
 ## Contributing
 
-All contributions are welcome! Please read the guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting any PRs.
+All contributions are welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines before creating a PR.
 
 ---
 
@@ -195,5 +200,3 @@ Distributed under the MIT License. See the [LICENSE](LICENSE) file for details.
 | 2026‑09‑04 | Added REST API docs and expanded architecture section. |
 | 2026‑09‑01 | Refined WebSocket config and added tests. |
 | 2026‑08‑29 | Initial repository creation. |
-
----
