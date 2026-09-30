@@ -1,24 +1,27 @@
-[K[2m  [2mmodel z-ai/glm-5.3-flash failed, trying next...[0m[0m
-[K[2m  [2mmodel deepseek-ai/deepseek-v4.1-flash failed, trying next...[0m[0m
-# Chat‑In‑Terminal
+# Chat-In-Terminal
 
-**Chat‑In‑Terminal** is a lightweight Spring Boot 3.x application that can act both as
-a WebSocket chat server and as a terminal‑based client.  
-A single executable JAR lets you **host** a chat room or **join** an existing
-room straight from the command line.
+![Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
----
+**Chat-In-Terminal** is a lightweight Spring Boot 3.x application that runs as both a WebSocket chat server and a terminal-based chat client. One executable JAR is all you need to host a new chat room or join an existing one — everything happens from the command line.
+
+## Features
+
+- Server and client packaged in a single executable JAR
+- STOMP messaging over WebSocket
+- Message history persisted to an embedded H2 database
+- REST endpoint for retrieving room history
+- Runs with nothing more than a JDK — no external services required
 
 ## Prerequisites
 
-- Java 17 + (JDK or JRE)
-- Maven 3.9 + (for building from source)
+- Java 17 or newer (JDK or JRE)
+- Maven 3.9+ (only for building from source; the Maven wrapper is included)
 
----
+## Getting Started
 
-## Quick Start
-
-> **Tip**: All commands are run from the repository root.
+> All commands below are run from the repository root.
 
 ### 1. Build the project
 
@@ -26,7 +29,7 @@ room straight from the command line.
 ./mvnw clean package
 ```
 
-The generated JAR is located in `target/` as `chat-in-terminal-<version>.jar`.
+The executable JAR is written to `target/chat-in-terminal-<version>.jar`.
 
 ### 2. Start the server
 
@@ -34,55 +37,51 @@ The generated JAR is located in `target/` as `chat-in-terminal-<version>.jar`.
 java -jar target/chat-in-terminal-*.jar
 ```
 
-The server listens on `8080` by default.
+The server listens on port `8080` by default.
 
-| Resource | Endpoint |
-| :------: | :-------: |
-| WebSocket | `ws://localhost:8080/ws` |
-| REST API | `http://localhost:8080/api` |
+| Resource  | Endpoint                    |
+| --------- | --------------------------- |
+| WebSocket | `ws://localhost:8080/ws`    |
+| REST API  | `http://localhost:8080/api` |
 
 ### 3. Join as a client
 
-Open a new terminal and point the JAR at a room URL:
+Open a second terminal and point the JAR at a room URL:
 
 ```bash
 java -jar target/chat-in-terminal-*.jar http://localhost:8080/rooms/1
 ```
 
-- **Send** a message by typing and pressing **Enter**.
-- **Exit** the client with `Ctrl+C`.
+- Type a message and press **Enter** to send it.
+- Press **Ctrl+C** to exit.
 
-The client automatically connects to the WebSocket endpoint
-and displays messages from the room.
-
----
+The client connects to the room's WebSocket endpoint and prints incoming messages to the terminal.
 
 ## Configuration
 
-The default settings can be overridden with JVM system properties
-(either before the `-jar` option or through a `--` separator).
+Defaults can be overridden with JVM system properties — place them before the `-jar` option, or after a `--` separator.
 
-| Property | Default | Purpose |
-| :------- | :------ | :------ |
+| Property | Default | Description |
+| -------- | ------- | ----------- |
 | `server.port` | `8080` | Port the server listens on |
 | `spring.datasource.url` | `jdbc:h2:file:./data/chatdb` | Path to the embedded H2 database |
 | `spring.jpa.hibernate.ddl-auto` | `update` | Hibernate schema generation strategy |
 
-**Example – Change port to 9090**
+Example — run the server on port 9090:
 
 ```bash
 java -Dserver.port=9090 -jar target/chat-in-terminal-*.jar
 ```
 
----
-
 ## API Reference
 
-### Get Room History
+### Get room history
 
-`GET /api/rooms/{roomId}/history`
+```
+GET /api/rooms/{roomId}/history
+```
 
-Returns a JSON array of all messages in the specified room.
+Returns a JSON array with all messages in the given room.
 
 ```bash
 curl http://localhost:8080/api/rooms/42/history
@@ -98,80 +97,71 @@ curl http://localhost:8080/api/rooms/42/history
 ]
 ```
 
-| Field     | Type   | Description                |
-| :-------- | :----- | :------------------------ |
-| `timestamp` | String | ISO‑8601 UTC timestamp |
-| `author`     | String | Sender identifier |
-| `content`    | String | Message text |
-
----
+| Field       | Type   | Description            |
+| ----------- | ------ | ---------------------- |
+| `timestamp` | String | ISO-8601 UTC timestamp |
+| `author`    | String | Sender identifier      |
+| `content`   | String | Message text           |
 
 ## Architecture
 
 ```
 Terminal (STOMP)  →  Spring Boot WebSocket  →  H2 Database
-                         ↘︎ REST API ↙
+                          ↘ REST API ↙
 ```
 
-- **`WebSocketConfig`** – configures `/ws` endpoint and broker.
-- **`MessageController`** – handles STOMP messages, persists and broadcasts.
-- **`ChatHistoryController`** – REST API for history retrieval.
-- **`MessageRepository`** – Spring Data JPA interface.
-
----
+| Component | Role |
+| --------- | ---- |
+| `WebSocketConfig` | Configures the `/ws` endpoint and message broker |
+| `MessageController` | Handles STOMP messages; persists and broadcasts them |
+| `ChatHistoryController` | REST API for history retrieval |
+| `MessageRepository` | Spring Data JPA interface |
 
 ## Development
 
-### Running Tests
+### Running tests
 
 ```bash
 ./mvnw test
 ```
 
-### Project Layout
+### Project layout
 
-```
+```text
 src/
  ├─ main/
  │   ├─ java/com/example/chat/
- │   │   ├─ config/      # WebSocket & application configuration
- │   │   ├─ controller/  # REST & STOMP controllers
+ │   │   ├─ config/       # WebSocket & application configuration
+ │   │   ├─ controller/   # REST & STOMP controllers
  │   │   └─ repository/   # JPA repositories
- │   └─ resources/     # application.yml, schema.sql, etc.
+ │   └─ resources/        # application.yml, schema.sql, etc.
  └─ test/
-     └─ java/...       # Unit and integration tests
+     └─ java/...          # Unit and integration tests
 ```
-
----
 
 ## Contributing
 
-1. Fork the repository and create a feature branch:  
+1. Fork the repository and create a feature branch:
    `git checkout -b feature/your-feature`
 2. Implement your changes and add tests.
-3. Run `./mvnw test` to ensure all tests pass.
-4. Submit a pull request against `main`.
+3. Run `./mvnw test` and make sure everything passes.
+4. Open a pull request against `main`.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
-
----
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guidelines.
 
 ## License
 
 Distributed under the [MIT License](LICENSE).
 
----
-
 ## Changelog
 
 | Date | Change |
-| :--- | :--- |
-| 2026‑09‑26 | Updated README for clarity and organization |
-| 2026‑09‑24 | Improved build instructions and badges |
-| 2026‑09‑19 | Added REST API documentation |
-| 2026‑09‑17 | Added test coverage badge |
-| 2026‑09‑04 | Implemented history API |
-| 2026‑09‑01 | Optimized WebSocket configuration |
-| 2026‑08‑29 | Repository creation |
-
----
+| ---- | ------ |
+| 2026-09-30 | Rewrote README: clearer structure, fixed typos, added badges and feature list |
+| 2026-09-26 | Updated README for clarity and organization |
+| 2026-09-24 | Improved build instructions and badges |
+| 2026-09-19 | Added REST API documentation |
+| 2026-09-17 | Added test coverage badge |
+| 2026-09-04 | Implemented history API |
+| 2026-09-01 | Optimized WebSocket configuration |
+| 2026-08-29 | Repository creation |
